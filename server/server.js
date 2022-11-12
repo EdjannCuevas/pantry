@@ -1,12 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const db = require('../db/knex');
+const path = require('path');
 
 function setUpServer () {
     const app = express();
 
     app.use(cors());
     app.use(express.json());
+    app.use(express.static(path.resolve(__dirname,'../client/build')));
 
     app.get('/pantry', async (req, res) => {
         try {
