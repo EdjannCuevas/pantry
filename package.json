@@ -1,0 +1,26 @@
+{
+  "name": "pantry",
+  "version": "1.0.0",
+  "description": "pantry app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdjannCuevas/pantry.git"
+  },
+  "author": "Edjann Cuevas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EdjannCuevas/pantry/issues"
+  },
+  "homepage": "https://github.com/EdjannCuevas/pantry#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "knex": "^2.3.0",
+    "pg": "^8.8.0"
+  }
+}
