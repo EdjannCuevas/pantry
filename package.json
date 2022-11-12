@@ -4,7 +4,7 @@
   "description": "Pantry App",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server/index.js",
     "build": "npm install && npm run migrate && npm run seed && cd client && npm install && npm run build",
     "migrate": "npx knex migrate:latest",
     "seed": "npx knex seed:run"
