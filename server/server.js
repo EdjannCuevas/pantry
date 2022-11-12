@@ -71,7 +71,7 @@ function setUpServer () {
 
     app.get('/test', async (req, res) => {
         try {
-            await db("todo").select("*");
+            await db("pantry").select("*");
             res.status(200).send("🐱‍🚀🐱‍👓🐱🐱‍🐉");
 
         } catch (error) {
