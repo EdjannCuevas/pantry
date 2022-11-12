@@ -1,11 +1,13 @@
 {
   "name": "pantry",
   "version": "1.0.0",
-  "description": "pantry app",
+  "description": "Pantry App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "npm install",
+    "migrate": "npx knex migrate:latest",
+    "seed": "npx knex seed:run"
   },
   "repository": {
     "type": "git",
