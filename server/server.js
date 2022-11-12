@@ -47,6 +47,8 @@ function setUpServer () {
 
     app.put('/pantry/:id', async (req, res) => {
         try {
+            const { id } = req.params;
+            
             await db('pantry')
                 .where({ id : id })
                 .update(req.body, ['name', 'date']);
@@ -59,6 +61,8 @@ function setUpServer () {
 
     app.delete('/pantry/:id', async (req, res) => {
         try {
+            const { id } = req.params;
+            
             await db('pantry')
                 .where({ id: id })
                 .delete();
