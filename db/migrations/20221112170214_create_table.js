@@ -5,7 +5,7 @@
 exports.up = async function(knex) {
     return await knex.schema.createTable('pantry', (table) => {
         table.increments('id').primary(),
-        table.string('name', 255).notNullable(),
+        table.string('name', 255).notNullable().unique(),
         table.timestamp('timestamp').notNullable();
     });
 };
