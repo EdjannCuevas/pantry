@@ -5,12 +5,12 @@ import '../Styles/Pantry.css'
 
 
 
-const Pantry = ({ signal, setSignal }) => {
-    const [list, setList] = useState([]);
+const Pantry = ({ change, setChange }) => {
+    const [pantryList, setPantryList] = useState([]);
   
     useEffect(() => {
-        getList();
-    },[signal]);
+        getPantry();
+    },[change]);
 
     function timeDuration (time) {
         const duration = moment(time).fromNow();
@@ -23,7 +23,16 @@ const Pantry = ({ signal, setSignal }) => {
         } catch (error) {
             console.log(error);
         }
-        setSignal(`${id}`);
+        setChange(change++);
+    };
+
+    async function addToIngredients (id, name, time) {
+        try {
+            await axios.post('/ingredients', { pantry_id: id, name : name, timestamp : time });
+        } catch (error) {
+            console.log(error)
+        };
+        setChange(change++);
     };
 
     async function editItem (id, name) {
@@ -32,43 +41,51 @@ const Pantry = ({ signal, setSignal }) => {
         } catch (error) {
             console.log(error);
         }
-        setSignal(`${id}`);
+        setChange(change++);
     };
     
-    async function getList () {
-        const fetchList = await axios.get('/pantry');
-        const list = fetchList.data.map((pantry) => {
-            const id = pantry.id;
-            const name = pantry.name;
-            const time = pantry.timestamp;
+    async function getPantry () {
+        const fetchPantryList = await axios.get('/pantry');
+        const list = fetchPantryList.data.map((item) => {
+            const id = item.id;
+            const name = item.name;
+            const time = item.timestamp;
 
             return <tr>
                 <td>
-                    <li>{ name }</li>
+                    <button 
+                    onClick={() => {
+                        addToIngredients(id, name, time);
+                        deleteItem(id);
+                        }
+                    }>+</button>
                 </td>
+                <td><p>{ name }</p></td>
                 <td>{timeDuration(time)}</td>
-                <td><button 
+                <td>
+                    <button 
                     onClick={() => {
                         deleteItem(id);
                         }
                 }>-</button>
                 </td>
             </tr>
-        })
-        setList(list);
+        });
+        setPantryList(list);
     };
     return <div className='pantry__container'>
         <h1>Pantry</h1>
         <table>
             <thead>
                 <tr>
+                    <th>+</th>
                     <th>PANTRY</th>
                     <th>BOUGHT</th>
-                    <th></th>
+                    <th>-</th>
                 </tr>
             </thead>
             <tbody>
-                {list}
+                {pantryList}
             </tbody>
         </table>
     </div>
