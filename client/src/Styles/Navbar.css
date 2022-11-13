@@ -1,0 +1,12 @@
+img {
+    height: 70px;
+    width: 70px;
+}
+
+div {
+    background-color: #4294b1;
+}
+
+.navbar__container {
+    display: flex;
+}
