@@ -1,26 +1,24 @@
+import '../Styles/Input.css'
 import React, { useState } from 'react';
 import axios from 'axios';
 import Pantry from './Pantry';
+import Ingredients from './Ingredients';
 
 const Input = () => {
 
     const [name, setName] = useState('');
-    const [signal, setSignal] = useState('');
+    const [change, setChange] = useState(0);
 
     const onSubmitForm = async () => {
-        if (signal !== name) { 
             try {
                 await axios.post('/pantry', { name : name, timestamp : new Date() });
             } catch (error) {
                 console.log(error)
             };
-            setSignal(name);
-        } else {
-            console.log('Change input')
-        }
+            setChange(change++);
     };
 
-    return <>
+    return <div className='input__container'>
         <form onSubmit={onSubmitForm}>
         <h1>Input</h1>
             <input 
@@ -34,8 +32,11 @@ const Input = () => {
             />
             <button>Add</button>
         </form>
-        <Pantry setSignal = { setSignal } signal = { signal }/>
-    </>
+        <div className='items__container'>
+            <Pantry setChange = { setChange } change = { change }/>
+            <Ingredients setChange = { setChange } change = { change }/>
+        </div>
+    </div>
     ;
 };
 
