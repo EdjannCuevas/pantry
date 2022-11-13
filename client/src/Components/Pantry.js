@@ -1,85 +1,69 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import moment from 'moment';
+import '../Styles/Pantry.css'
 
 
 
 const Pantry = ({ signal, setSignal }) => {
     const [list, setList] = useState([]);
-    const [toggle, setToggle] = useState(true);
-    const [text, setText] = useState("");
   
-    function toggleInput() {
-        setToggle(false);
-    }
-    
     useEffect(() => {
-
-        async function deleteItem(id) {
-            try {
-                await axios.delete(`pantry/${id}`);
-            } catch (error) {
-                console.log(error);
-            }
-            setSignal('delete');
-        };
-
-        async function editItem (id, name) {
-            try {
-                await axios.put(`pantry/${id}`, {name: name});
-            } catch (error) {
-                console.log(error);
-            }
-            setText(name);
-            setSignal('edit');
-        }
-        
-        async function getList () {
-            try {
-                console.log(text)
-                const fetchList = await axios.get('/pantry');
-
-                const list = fetchList.data.map((pantry) => {
-                    return <tr key = {pantry.id}>
-                        <td>{toggle ? (
-                             <li onDoubleClick={toggleInput}>{ pantry.name }</li>
-                        ) : (
-                            <form onSubmit={editItem(pantry.id, text)}>
-                                <input
-                                    type="text"
-                                    value= { pantry.name }
-                                    onChange={(e) => {
-                                        e.preventDefault();
-                                        setText(e.target.value)
-                                        }
-                                    }
-                                />
-                                <button>Edit</button>
-                            </form>
-                            )}
-                        </td>
-                        <td>{pantry.date}</td>
-                        <td><button 
-                            onClick={() => {
-                                deleteItem(pantry.id);
-                                }
-                        }>x</button>
-                        </td>
-                    </tr>
-                })
-                setList(list);
-            } catch (error) {
-                console.log(error);
-            };
-        };
         getList();
-    },[signal, toggle]);
+    },[signal]);
+
+    function timeDuration (time) {
+        const duration = moment(time).fromNow();
+        return duration;
+    };
     
-    return <form>
+    async function deleteItem (id) {
+        try {
+            await axios.delete(`pantry/${id}`);
+        } catch (error) {
+            console.log(error);
+        }
+        setSignal(`${id}`);
+    };
+
+    async function editItem (id, name) {
+        try {
+            await axios.put(`pantry/${id}`, {name: name});
+        } catch (error) {
+            console.log(error);
+        }
+        setSignal(`${id}`);
+    };
+    
+    async function getList () {
+        const fetchList = await axios.get('/pantry');
+        const list = fetchList.data.map((pantry) => {
+            const id = pantry.id;
+            const name = pantry.name;
+            const time = pantry.timestamp;
+
+            return <tr>
+                <td>
+                    <li>{ name }</li>
+                </td>
+                <td>{timeDuration(time)}</td>
+                <td><button 
+                    onClick={() => {
+                        deleteItem(id);
+                        }
+                }>-</button>
+                </td>
+            </tr>
+        })
+        setList(list);
+    };
+    return <div className='pantry__container'>
         <h1>Pantry</h1>
         <table>
             <thead>
                 <tr>
-                    <th>Pantry</th>
+                    <th>PANTRY</th>
+                    <th>BOUGHT</th>
                     <th></th>
                 </tr>
             </thead>
@@ -87,7 +71,7 @@ const Pantry = ({ signal, setSignal }) => {
                 {list}
             </tbody>
         </table>
-    </form>
+    </div>
 };
 
 export default Pantry;
