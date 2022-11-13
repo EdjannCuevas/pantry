@@ -1,6 +1,6 @@
 import React from "react";
 import stirfry from '../Styles/stirfry.gif';
-import '../Styles/NavBar.css'
+import '../Styles/Navbar.css'
 const Navbar = () => {
     return <div className="navbar__container">
         <img src={stirfry}/>
