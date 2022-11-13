@@ -28,8 +28,9 @@ const Ingredients = ({ change, setChange }) => {
     };
 
     async function getIngredients () {
-        const fetchIngredients = await axios.get('/ingredients');
-        const list = fetchIngredients.data.map((ingredient) => {
+        const fetchedIngredients = await axios.get('/ingredients');
+
+        const list = fetchedIngredients.data.map((ingredient) => {
             const id = ingredient.pantry_id;
             const name = ingredient.name;
             const time = ingredient.timestamp;
