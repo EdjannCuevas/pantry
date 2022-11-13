@@ -51,7 +51,7 @@ function setUpServer () {
             
             await db('pantry')
                 .where({ id : id })
-                .update(req.body, ['name', 'date']);
+                .update(req.body, ['name', 'timestamp']);
             res.status(201).send('Updated!');
 
         } catch (error) {
@@ -75,7 +75,7 @@ function setUpServer () {
 
     app.get('/test', async (req, res) => {
         try {
-            await db("pantry").select("*");
+            await db('pantry').select('*');
             res.status(200).send("🐱‍🚀🐱‍👓🐱🐱‍🐉");
 
         } catch (error) {
