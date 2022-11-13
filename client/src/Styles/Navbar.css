@@ -9,4 +9,6 @@ div {
 
 .navbar__container {
     display: flex;
+    border: 1px solid black;
+    align-items: flex-start;
 }

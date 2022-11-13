@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 const Recipes = () => {
     const [recipes, setRecipes] = useState([]);
     
-    useState(() => {
+    useEffect(() => {
         getRecipes();
     },[]);
 

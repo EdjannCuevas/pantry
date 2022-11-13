@@ -20,7 +20,7 @@ const Input = () => {
 
     return <div className='input__container'>
         <form onSubmit={onSubmitForm}>
-        <h1>Input</h1>
+        <h2>Add Items</h2>
             <input 
                 type= 'text'
                 value= { name }

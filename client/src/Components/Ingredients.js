@@ -1,6 +1,6 @@
+import '../Styles/Ingredients.css'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import '../Styles/Ingredients.css'
 
 const Ingredients = ({ change, setChange }) => {
     const [ingredientsList, setIngredientsList] = useState([]);

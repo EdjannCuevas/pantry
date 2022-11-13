@@ -1,7 +1,7 @@
+import '../Styles/Pantry.css'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-import '../Styles/Pantry.css'
 
 
 
