@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import axios from "axios";
-import Pantry from "./Pantry";
+import React, { useState } from 'react';
+import axios from 'axios';
+import Pantry from './Pantry';
 
 const Input = () => {
 
-    const [name, setName] = useState("");
-    const [signal, setSignal] = useState("");
+    const [name, setName] = useState('');
+    const [signal, setSignal] = useState('');
 
     const onSubmitForm = async (e) => {
         try {
             e.preventDefault();
-            await axios.post('/pantry', { name : name, date : new Date() });
+            await axios.post('/pantry', { name : name, timestamp : new Date() });
 
         } catch (error) {
             console.log(error)
@@ -22,7 +22,7 @@ const Input = () => {
         <h1>Input</h1>
         <form onSubmit={onSubmitForm}>
             <input 
-                type="text"
+                type='text'
                 value={ name }
                 onChange={(e) => {
                     e.preventDefault();
