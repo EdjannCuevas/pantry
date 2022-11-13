@@ -34,7 +34,10 @@ const Input = () => {
         </form>
         <div className='items__container'>
             <Pantry setChange = { setChange } change = { change }/>
-            <Ingredients setChange = { setChange } change = { change }/>
+            <Ingredients
+                setChange = { setChange }
+                change = { change }
+            />
         </div>
     </div>
     ;
