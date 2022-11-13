@@ -7,23 +7,25 @@ const Input = () => {
     const [name, setName] = useState('');
     const [signal, setSignal] = useState('');
 
-    const onSubmitForm = async (e) => {
-        try {
-            e.preventDefault();
-            await axios.post('/pantry', { name : name, timestamp : new Date() });
-
-        } catch (error) {
-            console.log(error)
-        };
-        setSignal(name);
+    const onSubmitForm = async () => {
+        if (signal !== name) { 
+            try {
+                await axios.post('/pantry', { name : name, timestamp : new Date() });
+            } catch (error) {
+                console.log(error)
+            };
+            setSignal(name);
+        } else {
+            console.log('Change input')
+        }
     };
 
     return <>
-        <h1>Input</h1>
         <form onSubmit={onSubmitForm}>
+        <h1>Input</h1>
             <input 
-                type='text'
-                value={ name }
+                type= 'text'
+                value= { name }
                 onChange={(e) => {
                     e.preventDefault();
                     setName(e.target.value);
