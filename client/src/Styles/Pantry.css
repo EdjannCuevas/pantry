@@ -1,0 +1,21 @@
+.pantry__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+form {
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+table {
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
