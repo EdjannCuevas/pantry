@@ -1,0 +1,10 @@
+.input__container {
+    justify-content: start;
+}
+
+.items__container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 500px;
+}
