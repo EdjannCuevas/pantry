@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Pantry from './Pantry';
 import Ingredients from './Ingredients';
+import { Button, IconButton } from '@mui/material';
+import { PhotoCamera } from '@mui/icons-material';
+
 
 const Input = () => {
 
@@ -30,7 +33,15 @@ const Input = () => {
                     }
                 }
             />
-            <button>Add</button>
+            <Button variant='contained' >Add</Button>
+            <Button variant="contained" component="label">
+                Upload
+                <input hidden accept="image/*" multiple type="file" />
+            </Button>
+            <IconButton color="primary" aria-label="upload picture" component="label">
+                <input hidden accept="image/*" type="file" />
+                <PhotoCamera />
+            </IconButton>
         </form>
         <div className='items__container'>
             <Pantry setChange = { setChange } change = { change }/>

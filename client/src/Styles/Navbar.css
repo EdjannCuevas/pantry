@@ -1,12 +1,12 @@
-img {
-    height: 70px;
-    width: 70px;
+#stirfry__gif {
+    height: 80px;
+    width: 80px;
 }
 
 .navbar__container {
-    background-color: #1DA1F2;
     display: flex;
-    border: 1px solid black;
     align-items: end;
     justify-content: center;
+    border: 1px solid black;
+    background-color: #1DA1F2;
 }

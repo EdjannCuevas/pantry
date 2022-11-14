@@ -1,6 +1,6 @@
 .input__container {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .items__container {

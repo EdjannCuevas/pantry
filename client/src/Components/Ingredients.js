@@ -1,12 +1,10 @@
 import '../Styles/Ingredients.css'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button'
 
 const Ingredients = ({ change, setChange }) => {
     const [ingredientsList, setIngredientsList] = useState([]);
-    const navigate = useNavigate();
-
     useEffect(() => {
         getIngredients();
     },[change]);
@@ -64,11 +62,9 @@ const Ingredients = ({ change, setChange }) => {
             <tbody>
                 {ingredientsList}
             </tbody>
-            <button onClick={(e)=> {
-                e.preventDefault();
-                navigate('/recipes');
-                }
-            }>Try</button>
+            <Button href="/recipes" variant="contained">
+            Try!
+            </Button>
         </table>
     </div>
 };

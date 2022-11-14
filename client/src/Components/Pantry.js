@@ -2,6 +2,8 @@ import '../Styles/Pantry.css'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
+import { Fab } from '@mui/material';
+import { AddIcon } from '@mui/icons-material';
 
 
 
@@ -53,12 +55,16 @@ const Pantry = ({ change, setChange }) => {
 
             return <tr>
                 <td>
-                    <button 
-                    onClick={() => {
-                        addToIngredients(id, name, time);
-                        deleteItem(id);
+                    <Fab 
+                        color="primary"
+                        aria-label="add"
+                        onClick={() => {
+                            addToIngredients(id, name, time);
+                            deleteItem(id);
+                            }
                         }
-                    }>+</button>
+                    >
+                    </Fab>
                 </td>
                 <td><p>{ name }</p></td>
                 <td>{timeDuration(time)}</td>
