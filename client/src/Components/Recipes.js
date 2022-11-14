@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 const Recipes = () => {
     const [recipes, setRecipes] = useState([]);
+    const [ingredients, setIngredients] = useState([]);
     
     useEffect(() => {
         getRecipes();
@@ -15,6 +16,8 @@ const Recipes = () => {
         const ingredients = fetchedIngredients.data.map((ingredient) => {
             return ingredient.name;
         });
+
+        setIngredients()
         const spacedIngredients = ingredients.join('%20and%20').toLowerCase();
         const fetchedRecipeList = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${spacedIngredients}&app_id=${app_id}&app_key=${app_key}`);
         const recipeList = fetchedRecipeList.data.hits.map((item) => {
