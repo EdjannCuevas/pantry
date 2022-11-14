@@ -14,7 +14,7 @@ const Recipes = () => {
         const app_key = '6708bc487e05e9385e5d27f95ed728f3';
         const fetchedIngredients = await axios.get('/ingredients')
         const ingredients = fetchedIngredients.data.map((ingredient) => {
-            return <li>{ ingredient.name }</li>
+            return ingredient.name 
         });
 
         setIngredients(ingredients);
