@@ -3,12 +3,10 @@ img {
     width: 70px;
 }
 
-div {
-    background-color: #4294b1;
-}
-
 .navbar__container {
+    background-color: #1DA1F2;
     display: flex;
     border: 1px solid black;
-    align-items: flex-start;
+    align-items: end;
+    justify-content: center;
 }
