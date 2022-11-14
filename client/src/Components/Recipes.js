@@ -14,10 +14,10 @@ const Recipes = () => {
         const app_key = '6708bc487e05e9385e5d27f95ed728f3';
         const fetchedIngredients = await axios.get('/ingredients')
         const ingredients = fetchedIngredients.data.map((ingredient) => {
-            return ingredient.name;
+            return <li>{ ingredient.name }</li>
         });
 
-        setIngredients()
+        setIngredients(ingredients);
         const spacedIngredients = ingredients.join('%20and%20').toLowerCase();
         const fetchedRecipeList = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${spacedIngredients}&app_id=${app_id}&app_key=${app_key}`);
         const recipeList = fetchedRecipeList.data.hits.map((item) => {
@@ -30,6 +30,7 @@ const Recipes = () => {
 
     return <div>
         <h1>Recipes</h1>
+        { ingredients }
         { recipes }
     </div>
 };
