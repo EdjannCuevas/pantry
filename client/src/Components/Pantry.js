@@ -58,17 +58,7 @@ const Pantry = ({ change, setChange }) => {
                             addToIngredients(id, name, time);
                             deleteItem(id);
                             }
-                        }></button>
-                    {/* <Fab 
-                        color="primary"
-                        aria-label="add"
-                        onClick={() => {
-                            addToIngredients(id, name, time);
-                            deleteItem(id);
-                            }
-                        }
-                    >
-                    </Fab> */}
+                        }>+</button>
                 </td>
                 <td><p>{ name }</p></td>
                 <td>{timeDuration(time)}</td>
