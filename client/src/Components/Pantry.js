@@ -2,6 +2,14 @@ import '../Styles/Pantry.css'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
+import { Button } from '@mui/material';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 
 
@@ -51,42 +59,44 @@ const Pantry = ({ change, setChange }) => {
             const name = item.name;
             const time = item.timestamp;
 
-            return <tr>
-                <td>
-                    <button onClick={() => {
+            return <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell>
+                    <Button onClick={() => {
                             addToIngredients(id, name, time);
                             deleteItem(id);
                             }
-                        }>+</button>
-                </td>
-                <td><p>{ name }</p></td>
-                <td>{timeDuration(time)}</td>
-                <td>
-                    <button 
+                        }>+</Button>
+                </TableCell>
+                <TableCell><p>{ name }</p></TableCell>
+                <TableCell>{timeDuration(time)}</TableCell>
+                <TableCell align='right'>
+                    <Button 
                     onClick={() => {
                         deleteItem(id);
                         }
-                }>-</button>
-                </td>
-            </tr>
+                }>-</Button>
+                </TableCell>
+            </TableRow>
         });
         setPantryList(list);
     };
     return <div className='pantry__container'>
         <h1>Pantry</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>+</th>
-                    <th>PANTRY</th>
-                    <th>BOUGHT</th>
-                    <th>-</th>
-                </tr>
-            </thead>
-            <tbody>
-                { pantryList }
-            </tbody>
-        </table>
+        <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>+</TableCell>
+                        <TableCell>PANTRY</TableCell>
+                        <TableCell>BOUGHT</TableCell>
+                        <TableCell align='right'>-</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    { pantryList }
+                </TableBody>
+            </Table>
+        </TableContainer>
     </div>
 };
 

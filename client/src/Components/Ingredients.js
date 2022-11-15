@@ -38,12 +38,15 @@ const Ingredients = ({ change, setChange }) => {
             const name = ingredient.name;
             const time = ingredient.timestamp;
 
-            return <button
+            return <Button
+                    color='success'
+                    variant='contained'
+                    size='small'
                     onClick={() => {
                         addToPantry(id, name, time);
                         deleteIngredient(id);
                         }
-                }>x { name }</button>
+                }>x { name }</Button>
         });
         setIngredientsList(list);
     };
@@ -63,6 +66,7 @@ const Ingredients = ({ change, setChange }) => {
                     navigate('/recipes');
                     }
             }>SEARCH</Button>
+
         </div>
     </div>
 };
