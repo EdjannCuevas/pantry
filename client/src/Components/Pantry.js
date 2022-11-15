@@ -2,7 +2,8 @@ import '../Styles/Pantry.css'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
+import { Delete } from '@mui/icons-material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,7 +11,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
 
 
 const Pantry = ({ change, setChange }) => {
@@ -61,7 +61,9 @@ const Pantry = ({ change, setChange }) => {
 
             return <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell>
-                    <Button onClick={() => {
+                    <Button 
+                            variant='outlined'
+                            onClick={() => {
                             addToIngredients(id, name, time);
                             deleteItem(id);
                             }
@@ -69,12 +71,16 @@ const Pantry = ({ change, setChange }) => {
                 </TableCell>
                 <TableCell><p>{ name }</p></TableCell>
                 <TableCell>{timeDuration(time)}</TableCell>
+                <TableCell>-</TableCell>
                 <TableCell align='right'>
                     <Button 
-                    onClick={() => {
-                        deleteItem(id);
-                        }
-                }>-</Button>
+                        variant='text'
+                        startIcon={<Delete/>}
+                        onClick={() => {
+                            deleteItem(id);
+                            }
+                        }>
+                    </Button>
                 </TableCell>
             </TableRow>
         });
@@ -89,6 +95,7 @@ const Pantry = ({ change, setChange }) => {
                         <TableCell>+</TableCell>
                         <TableCell>PANTRY</TableCell>
                         <TableCell>BOUGHT</TableCell>
+                        <TableCell>EXP. DATE</TableCell>
                         <TableCell align='right'>-</TableCell>
                     </TableRow>
                 </TableHead>
