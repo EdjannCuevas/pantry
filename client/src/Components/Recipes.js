@@ -1,12 +1,11 @@
-import { Card } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Card } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Ingredients from './Ingredients';
 
 const Recipes = () => {
     const [recipes, setRecipes] = useState([]);
-    const [ingredients, setIngredients] = useState([]);
     
     useEffect(() => {
         getRecipes();
@@ -18,9 +17,6 @@ const Recipes = () => {
         const fetchedIngredientsList = await axios.get('/ingredients');
         const ingredientsList = fetchedIngredientsList.data.map((ingredient) => {
             return ingredient.name 
-        });
-        setIngredients((ingredientsName) => {
-            return <p>{ ingredientsName }</p>
         });
 
         const spacedIngredients = ingredientsList.join('%20and%20').toLowerCase();
