@@ -2,6 +2,7 @@ import '../Styles/Ingredients.css'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const Ingredients = ({ change, setChange }) => {
     const [ingredientsList, setIngredientsList] = useState([]);
@@ -38,38 +39,37 @@ const Ingredients = ({ change, setChange }) => {
             const time = ingredient.timestamp;
 
             return <tr>
-                <td>
                     <button
                     onClick={() => {
                         addToPantry(id, name, time);
                         deleteIngredient(id);
                         }
-                    }>-</button>
-                </td>
-
-                <td><p>{ name }</p></td>
+                    }>x { name }</button>
             </tr>
         });
         setIngredientsList(list);
     };
     return <div className='ingredients__container'>
-        <h1>Ingredients</h1>
         <table>
             <thead>
                 <tr>
-                    <th>-</th>
                     <th>INGREDIENTS</th>
                 </tr>
             </thead>
             <tbody>
                 {ingredientsList}
             </tbody>
-            <button onClick={(e)=> {
-                e.preventDefault();
-                navigate('/recipes');
-                }
-            }>Try</button>
         </table>
+        <div className='try__button__container' >
+            <Button
+                variant="contained"
+                component="label"
+                onClick={(e)=> {
+                    e.preventDefault();
+                    navigate('/recipes');
+                    }
+            }>Try</Button>
+        </div>
     </div>
 };
 

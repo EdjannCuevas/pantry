@@ -3,12 +3,13 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 50%;
+    width: 60%;
+    margin-left: 30px;
 }
 
-table {
-    border: 1px solid black;
-    justify-content: center;
-    align-items: center;
+.try__button__container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
     width: 100%;
 }
