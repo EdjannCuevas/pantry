@@ -3,6 +3,10 @@
     width: 80px;
 }
 
+#app__name {
+    margin-left: 60px;
+}
+
 .navbar__container {
     padding-bottom: 10px;
     display: flex;
