@@ -19,6 +19,7 @@
 
 .recipe__info {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .recipe__buttons__container {
@@ -29,6 +30,7 @@
 }
 
 .raw__data {
+    width: 70%;
     margin: 10px;
     margin-top: 0;
 }

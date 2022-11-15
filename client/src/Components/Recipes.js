@@ -40,10 +40,10 @@ const Recipes = () => {
                             <img className='food__image'  alt={name} src={image}/>
                             <Card className='raw__data'>
                                 <h3>{ name }</h3>
-                                <p><h4>Servings:</h4> { servings }</p>
-                                <p><h4>Calories/serving:</h4> { Math.floor(calories / servings) }</p>
-                                <p><h4>Cook time:</h4> { cookTime } minutes</p>
-                                <p><h4>Ingredients:</h4> { recipeIngredients.join(', ') }</p>
+                                <p><b>Servings:</b> { servings }</p>
+                                <p><b>Calories/serving:</b> { Math.floor(calories / servings) }</p>
+                                <p><b>Cook time:</b> { cookTime } minutes</p>
+                                <p><b>Ingredients:</b> { recipeIngredients.join(', ') }</p>
                             </Card>
                         </div>
                         <div className='recipe__buttons__container'>
