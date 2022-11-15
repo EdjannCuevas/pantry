@@ -2,20 +2,13 @@ import '../Styles/Pantry.css'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-import { Button, IconButton } from '@mui/material';
+import { Button, Table, TableBody, TableCell, TableContainer,TableHead, TableRow, Paper } from '@mui/material';
 import { Delete } from '@mui/icons-material';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 
 
 const Pantry = ({ change, setChange }) => {
     const [pantryList, setPantryList] = useState([]);
-  
+
     useEffect(() => {
         getPantry();
     },[change]);
