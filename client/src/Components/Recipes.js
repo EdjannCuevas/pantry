@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Card } from '@mui/material';
+import { Button, Card, Table, TableBody, TableCell, TableContainer,TableHead, TableRow, Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Ingredients from './Ingredients';
 import '../Styles/Recipes.css'
@@ -32,15 +32,29 @@ const Recipes = () => {
             const cookTime = recipe.totalTime;
             const servings = recipe.yield;
             const source = recipe.url;
-            return  <Card className='recipe__data__container'>
-                <img alt={name} src={image}/>
-                <p>{ name }</p>
-                <p>Servings: { servings }</p>
-                <p>Calories/serving: { calories }</p>
-                <p>Ingredients: { recipeIngredients }</p>
-                <p>Cook time: { cookTime }minutes</p>
-                <Link href={ source }>View Recipe</Link>
-            </Card>
+
+            return  <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell>
+                    <Card className='recipe__data__container'>
+                        <div className='recipe__info'>
+                            <img className='food__image'  alt={name} src={image}/>
+                            <Card>
+                                <h3>{ name }</h3>
+                                <p>Servings: { servings }</p>
+                                <p>Calories/serving: { Math.floor(calories) }</p>
+                                <p>Cook time: { cookTime } minutes</p>
+                                <p>Ingredients: { recipeIngredients }</p>
+                            </Card>
+                        </div>
+                        <div className='recipe__button__container'></div>
+                        <Button
+                            variant='contained'
+                            href={ source }
+                            >View Recipe
+                        </Button>
+                    </Card>
+                </TableCell>
+            </TableRow>
         });
         setRecipes(recipeList);
         console.log(recipeList);
@@ -49,9 +63,19 @@ const Recipes = () => {
 
     return <div className='recipes__page'>
         <Ingredients/>
-        <h1>Results</h1>
         <div className='recipes__container'>
-        { recipes }
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align='center'>RESULTS</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        { recipes }
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
     </div>
 };
