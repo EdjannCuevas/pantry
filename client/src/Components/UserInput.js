@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Pantry from './Pantry';
 import Ingredients from './Ingredients';
-import { Button, IconButton, FormControl, FormHelperText ,InputLabel, OutlinedInput } from '@mui/material';
+import { Button, IconButton, FormHelperText ,InputLabel, OutlinedInput } from '@mui/material';
 import { PhotoCamera } from '@mui/icons-material';
 
 
 const UserInput = () => {
 
     const [name, setName] = useState('');
-    const [change, setChange] = useState(0);
+    let [change, setChange] = useState(0);
 
     const onSubmitForm = async () => {
             try {
@@ -39,12 +39,6 @@ const UserInput = () => {
                 <Button 
                     variant="contained"
                     component="label">
-                    Add
-                    <input hidden accept="image/*" multiple type="text" />
-                </Button>
-                <Button 
-                    variant="contained"
-                    component="label">
                     Upload Recipt
                     <input hidden accept="image/*" multiple type="file" />
                 </Button>
@@ -63,9 +57,7 @@ const UserInput = () => {
                 change = { change }
             />
         </div>
-        <div className='items__container'>
             <Pantry setChange = { setChange } change = { change }/>
-        </div>
     </div>
     ;
 };

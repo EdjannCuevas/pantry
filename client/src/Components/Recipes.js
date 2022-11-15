@@ -26,7 +26,6 @@ const Recipes = () => {
             return  <p>{ item.recipe.label }</p>
         });
         setRecipes(recipeList);
-        console.log(recipeList);
     };
     
 
