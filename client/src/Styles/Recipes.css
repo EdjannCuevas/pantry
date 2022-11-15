@@ -1,0 +1,8 @@
+.recipes__page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 70px;
+    margin-top: 20px;
+}

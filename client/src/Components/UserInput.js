@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Pantry from './Pantry';
 import Ingredients from './Ingredients';
-import { Button, IconButton, FormHelperText ,InputLabel, OutlinedInput } from '@mui/material';
+import { Button, IconButton, FormHelperText , InputLabel, OutlinedInput } from '@mui/material';
 import { PhotoCamera } from '@mui/icons-material';
 
 const UserInput = () => {
 
     const [name, setName] = useState('');
+    const [searchToggle, setSearchToggle] = useState(true);
     let [change, setChange] = useState(0);
 
     const onSubmitForm = async () => {
@@ -53,6 +54,8 @@ const UserInput = () => {
             <Ingredients
                 setChange = { setChange }
                 change = { change }
+                setSearchToggle = { setSearchToggle }
+                searchToggle = { searchToggle }
             />
         </div>
             <Pantry setChange = { setChange } change = { change }/>

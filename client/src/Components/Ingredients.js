@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 
-const Ingredients = ({ change, setChange }) => {
+const Ingredients = ({ change, setChange, searchToggle, setSearchToggle }) => {
     const [ingredientsList, setIngredientsList] = useState([]);
     const navigate = useNavigate();
 
@@ -57,17 +57,33 @@ const Ingredients = ({ change, setChange }) => {
             { ingredientsList }
             </div>
         </div>
-        <div className='try__button__container' >
-            <Button
-                variant="contained"
-                component="label"
-                onClick={(e)=> {
-                    e.preventDefault();
-                    navigate('/recipes');
-                    }
-            }>SEARCH</Button>
-
-        </div>
+        {(searchToggle)
+            ? (
+                <div className='search__button__container' >
+                    <Button
+                        variant='contained'
+                        component='label'
+                        onClick={(e) => {
+                            e.preventDefault();
+                            navigate('/recipes');
+                            setSearchToggle(false);
+                        }
+                    }>SEARCH</Button>
+                </div>
+            ) : (
+                <div className='back__button__container' >
+                    <Button
+                        variant='contained'
+                        component='label'
+                        onClick={(e) =>{
+                            e.preventDefault();
+                            navigate('/');
+                            searchToggle(true);
+                        }
+                    }>BACK</Button>
+                </div>
+            )
+        }
     </div>
 };
 

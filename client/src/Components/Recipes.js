@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Card } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Ingredients from './Ingredients';
+import '../Styles/Recipes.css'
 
 const Recipes = () => {
     const [recipes, setRecipes] = useState([]);
@@ -46,9 +47,9 @@ const Recipes = () => {
     };
     
 
-    return <div>
+    return <div className='recipes__page'>
         <Ingredients/>
-        <h1>Recipes</h1>
+        <h1>Results</h1>
         <div className='recipes__container'>
         { recipes }
         </div>
