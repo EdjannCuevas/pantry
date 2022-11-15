@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Table, TableBody, TableCell, TableContainer,TableHead, TableRow, Paper } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Button, Card, Table, TableBody, TableCell, TableContainer,TableHead, TableRow, Paper, IconButton } from '@mui/material';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Ingredients from './Ingredients';
 import '../Styles/Recipes.css'
 
@@ -38,20 +38,27 @@ const Recipes = () => {
                     <Card className='recipe__data__container'>
                         <div className='recipe__info'>
                             <img className='food__image'  alt={name} src={image}/>
-                            <Card>
+                            <Card className='raw__data'>
                                 <h3>{ name }</h3>
-                                <p>Servings: { servings }</p>
-                                <p>Calories/serving: { Math.floor(calories) }</p>
-                                <p>Cook time: { cookTime } minutes</p>
-                                <p>Ingredients: { recipeIngredients }</p>
+                                <p><h4>Servings:</h4> { servings }</p>
+                                <p><h4>Calories/serving:</h4> { Math.floor(calories / servings) }</p>
+                                <p><h4>Cook time:</h4> { cookTime } minutes</p>
+                                <p><h4>Ingredients:</h4> { recipeIngredients.join(', ') }</p>
                             </Card>
                         </div>
-                        <div className='recipe__button__container'></div>
-                        <Button
-                            variant='contained'
-                            href={ source }
-                            >View Recipe
-                        </Button>
+                        <div className='recipe__buttons__container'>
+                            <Button
+                                variant='contained'
+                                href={ source }
+                                >View Recipe
+                            </Button>
+                            <IconButton
+                                variant='contained'
+                                color="primary"
+                                aria-label="add to shopping cart">
+                                <AddShoppingCartIcon />
+                            </IconButton>
+                        </div>
                     </Card>
                 </TableCell>
             </TableRow>

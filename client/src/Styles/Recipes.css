@@ -21,9 +21,14 @@
     display: flex;
 }
 
-.recipe__button__container {
+.recipe__buttons__container {
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: flex-start;
+    align-items: center;
     width: 100%; 
+}
+
+.raw__data {
+    margin: 10px;
+    margin-top: 0;
 }
