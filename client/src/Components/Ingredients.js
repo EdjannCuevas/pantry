@@ -38,28 +38,22 @@ const Ingredients = ({ change, setChange }) => {
             const name = ingredient.name;
             const time = ingredient.timestamp;
 
-            return <tr>
-                    <button
+            return <button
                     onClick={() => {
                         addToPantry(id, name, time);
                         deleteIngredient(id);
                         }
-                    }>x { name }</button>
-            </tr>
+                }>x { name }</button>
         });
         setIngredientsList(list);
     };
     return <div className='ingredients__container'>
-        <table>
-            <thead>
-                <tr>
-                    <th>INGREDIENTS</th>
-                </tr>
-            </thead>
-            <tbody>
-                {ingredientsList}
-            </tbody>
-        </table>
+        <div className='ingredients__list__container'>
+            <h3>INGREDIENTS</h3>
+            <div>
+            { ingredientsList }
+            </div>
+        </div>
         <div className='try__button__container' >
             <Button
                 variant="contained"
