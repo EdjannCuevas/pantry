@@ -6,7 +6,6 @@ import Ingredients from './Ingredients';
 import { Button, IconButton, FormHelperText ,InputLabel, OutlinedInput } from '@mui/material';
 import { PhotoCamera } from '@mui/icons-material';
 
-
 const UserInput = () => {
 
     const [name, setName] = useState('');
@@ -18,11 +17,10 @@ const UserInput = () => {
             } catch (error) {
                 console.log(error)
             };
-            setChange(change++);
     };
 
     return <div className='home__top'>
-        <div className='input__container'>
+        <div className='user__input__container'>
             <form onSubmit={onSubmitForm}>
                 <InputLabel htmlFor="my-input">Input food item</InputLabel>
                 <OutlinedInput
@@ -37,9 +35,9 @@ const UserInput = () => {
                     />
                 <FormHelperText id="my-helper-text">Add items to your Pantry</FormHelperText>
                 <Button 
-                    variant="contained"
+                    variant='contained'
                     component="label">
-                    Upload Recipt
+                    Receipt
                     <input hidden accept="image/*" multiple type="file" />
                 </Button>
                 <IconButton

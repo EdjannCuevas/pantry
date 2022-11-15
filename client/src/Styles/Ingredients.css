@@ -5,11 +5,13 @@
     align-items: center;
     width: 60%;
     margin-left: 30px;
-    border: 1px solid;
 }
 
 .ingredients__list__container {
+    border: 1px solid;
+    padding: 10px;
     height: 100%;
+    width: 100%;
 }
 
 .try__button__container {

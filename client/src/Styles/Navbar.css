@@ -8,9 +8,10 @@
 }
 
 .navbar__container {
-    padding-bottom: 10px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    background-color: #1DA1F2;
+    height: 10%;
+    padding-bottom: 10px;
+    background-color:  #3FC060;
 }

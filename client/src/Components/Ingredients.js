@@ -48,8 +48,8 @@ const Ingredients = ({ change, setChange }) => {
         setIngredientsList(list);
     };
     return <div className='ingredients__container'>
+        <h3>INGREDIENTS</h3>
         <div className='ingredients__list__container'>
-            <h3>INGREDIENTS</h3>
             <div>
             { ingredientsList }
             </div>
@@ -62,7 +62,7 @@ const Ingredients = ({ change, setChange }) => {
                     e.preventDefault();
                     navigate('/recipes');
                     }
-            }>Try</Button>
+            }>SEARCH</Button>
         </div>
     </div>
 };
