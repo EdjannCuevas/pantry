@@ -36,12 +36,13 @@
 
 .icons__container {
     display: flex;
+    justify-content: space-evenly;
 }
 .recipe__buttons__container {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
     width: 100%; 
 }
 

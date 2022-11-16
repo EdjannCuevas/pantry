@@ -76,6 +76,7 @@ const Recipes = () => {
                         <div className='recipe__buttons__container'>
                             <Button className='view__button'
                                 variant='contained'
+                                color='primary'
                                 href={ source }
                                 >View Recipe
                             </Button>
@@ -88,7 +89,7 @@ const Recipes = () => {
                                     navigate('/lists');
                                     }
                                 }>
-                                <LocalGroceryStore sx={{ fontSize: 40 }}/>
+                                <LocalGroceryStore color='primary' sx={{ fontSize: 40 }}/>
                             </IconButton>
                         </div>
                     </div>
