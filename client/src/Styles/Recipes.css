@@ -17,8 +17,8 @@
 }
 
 .food__image {
-    height: 150px;
-    width: 150px;
+    height: 220px;
+    width: 220px;
 }
 
 
@@ -39,8 +39,9 @@
 }
 .recipe__buttons__container {
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
-    align-items: center;
+    align-items: flex-end;
     width: 100%; 
 }
 
@@ -56,4 +57,14 @@
     align-items: center;
     height: 90px;
     width: 150px;
+}
+
+.table__cell {
+    margin: 10px;
+}
+
+.view__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
