@@ -16,14 +16,12 @@
 
 .search__button__container {
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: center;
     width: 100%;
 }
 
 .back__button__container {
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
     width: 100%;
 }
