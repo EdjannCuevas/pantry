@@ -6,26 +6,16 @@ import { CheckBox } from '@mui/icons-material';
 
 const GroceryList = () => {
     const [groceryList, setGroceryList] = useState([]);
-    const [checked, setChecked] = useState([0]);
+    const [checked, setChecked] = useState(true);
     let [toggle, setToggle] = useState(0)
     
     useEffect(() => {
         getGroceryList();
     },[toggle]);
 
-
-        
-    function handleToggle (value) {
-        const currentIndex = checked.indexOf(value);
-        const newChecked = [...checked];
-  
-        if (currentIndex === -1) {
-            newChecked.push(value);
-        } else {
-            newChecked.splice(currentIndex, 1);
-        }
-        setChecked(newChecked);
-    };
+    const handleChange = (event) => {
+        setChecked(event.target.checked);
+      };
 
     async function removeGroceryList (id) {
         try {
@@ -45,23 +35,16 @@ const GroceryList = () => {
             const recipeSource = list.recipe_source;
             const imageSource = list.image_source;
             const ingredientsCheckList = ingredientsArray.map((ingredient) => {
-                return <ListItem
-                    key={id}>
-                        <ListItemButton
-                            role={undefined} 
-                            onClick={handleToggle(id)}
-                            dense
-                        >
+                return <ListItem>
                             <ListItemIcon>
                                 <CheckBox
-                                    egde='start'
-                                    checked={checked.indexOf(ingredient) !== 1}
-                                    tabIndex={-1}
-                                    disableRipple
+                                    checked={checked}
+                                    onChange={(e) => handleChange(e)}
+                                    inputProps={{ 'aria-label': 'controlled' }}
+                                    color="primary"
                                 />
                             </ListItemIcon>
                             <ListItemText primary={ ingredient } />
-                        </ListItemButton>
                     </ListItem>
             });
             
@@ -69,27 +52,28 @@ const GroceryList = () => {
             return <div>
                 <Card className='card__container'>
                     <img className='food__image' src = { imageSource } alt='recipe photo'/>
-                        <p className='recipe__name'>{ name }</p>
-                <List 
-                    className='list__container'
-                    sx={{ width: '100%',
-                    maxWidth: 360,
-                    bgcolor: 'background.paper',
-                    overflow: 'auto',
-                    maxHeight: 500
-                    }}
-                    >{ ingredientsCheckList }
-                </List>
-                <div className='buttons__container'>
-                    <Button 
-                        href={ recipeSource }
-                        >Recipe
-                    </Button>
-                    <Button 
-                        onClick={() => removeGroceryList(id)}
-                        >Delete
-                    </Button>
-                </div>
+                    <p className='recipe__name'>{ name }</p>
+                    <List 
+                        className='list__container'
+                        sx={{ width: '100%',
+                        maxWidth: 360,
+                        bgcolor: 'background.paper',
+                        overflow: 'auto',
+                        maxHeight: 500
+                        }}
+                        >
+                        { ingredientsCheckList }
+                    </List>
+                    <div className='buttons__container'>
+                        <Button 
+                            href={ recipeSource }
+                            >Recipe
+                        </Button>
+                        <Button 
+                            onClick={() => removeGroceryList(id)}
+                            >Delete
+                        </Button>
+                    </div>
                 </Card>
 
             </div>
@@ -102,7 +86,10 @@ const GroceryList = () => {
 
 
     return <div>
-        <TableContainer style={{maxHeight:'inherit', maxWidth:'inherit', boxSizing:'border-box'}} component={Paper}>
+        <TableContainer
+            style={{maxHeight:'inherit', maxWidth:'inherit', boxSizing:'border-box'}}
+            component={Paper}
+        >
             <Table>
                 <TableHead>
                     <TableRow>
