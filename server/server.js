@@ -136,6 +136,56 @@ function setUpServer () {
         };
     });
 
+    app.get('/grocery_list', async (req, res) => {
+        try {
+            const grocery_list = await db('grocery_list')
+                .select('*');
+            res.status(201).send(grocery_list);
+
+        } catch (error) {
+          console.log(error);  
+        };
+    });
+
+    app.get('/grocery_list/:id', async (req, res) => {
+        try {
+            const { id } = req.params;
+            const list = await db('grocery_list')
+                .select('*')
+                .where({ id : id });
+            res.status(201).send(list);
+
+        } catch (error) {
+            console.log(error);
+        };
+    });
+
+    app.post('/grocery_list', async (req, res) => {
+        try {
+            await db('grocery_list')
+                .insert(req.body);
+            res.status(201).send('Success!');
+
+        } catch (error) {
+            console.log(error);
+        };
+    });
+
+    app.delete('/grocery_list/:id', async (req, res) => {
+        try {
+            const { id } = req.params;
+            
+            await db('grocery_list')
+                .where({ id: id })
+                .delete();
+            res.status(201).send('Item was deleted!');
+
+        } catch (error) {
+            console.log(error);
+        };
+    });
+
+
     return app;
 };
 
