@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Table, TableBody, TableCell, TableContainer,TableHead, TableRow, Paper, IconButton } from '@mui/material';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { LocalGroceryStore, HourglassTop, Restaurant, Scale } from '@mui/icons-material';
 import Ingredients from './Ingredients';
 import '../Styles/Recipes.css'
 
 const Recipes = () => {
     const [recipes, setRecipes] = useState([]);
+    const [groceryList, setGroceryList] = useState([]);
     
     useEffect(() => {
         getRecipes();
@@ -34,34 +35,47 @@ const Recipes = () => {
             const source = recipe.url;
 
             return  <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell>
-                    <Card className='recipe__data__container'>
-                        <div className='recipe__info'>
-                            <img className='food__image'  alt={name} src={image}/>
-                            <Card className='raw__data'>
-                                <h3>{ name }</h3>
-                                <p><b>Servings:</b> { servings }</p>
-                                <p><b>Calories/serving:</b> { Math.floor(calories / servings) }</p>
-                                <p><b>Cook time:</b> { cookTime } minutes</p>
-                                <p><b>Ingredients:</b> { recipeIngredients.join(', ') }</p>
-                            </Card>
+            <TableCell>
+                <Card className='recipe__data__container'>
+                    <div className='recipe__info'>
+                        <img className='food__image'  alt='recipe-photo' src={ image }/>
+                        <div>
+                            <div className='raw__data'>
+                                <p className='recipe__name'>{ name }</p>
+                                <div className='icons__container'>
+                                    <Card className='icon__data'>
+                                        <HourglassTop sx={{ fontSize: 50 }}/>
+                                        <b>Cooking Time: { cookTime } min/s</b>
+                                    </Card>
+                                    <Card className='icon__data'>
+                                        <Restaurant sx={{ fontSize: 50 }}/>
+                                        <b>Servings: { servings }</b>
+                                    </Card>
+                                    <Card className='icon__data'>
+                                        <Scale sx={{ fontSize: 50 }}/>
+                                        <b>Calories per serving: { Math.floor(calories/servings) }</b>
+                                    </Card>
+                                </div>
+                            <p><b>Ingredients:</b> { recipeIngredients.join(', ') } </p>
+                            </div> 
+                    <div className='recipe__buttons__container'>
+                        <Button
+                            variant='contained'
+                            href={ source }
+                            >View Recipe
+                        </Button>
+                        <IconButton
+                            variant='contained'
+                            color="primary"
+                            aria-label="add to shopping cart">
+                            <LocalGroceryStore sx={{ fontSize: 40 }}/>
+                        </IconButton>
+                    </div>
                         </div>
-                        <div className='recipe__buttons__container'>
-                            <Button
-                                variant='contained'
-                                href={ source }
-                                >View Recipe
-                            </Button>
-                            <IconButton
-                                variant='contained'
-                                color="primary"
-                                aria-label="add to shopping cart">
-                                <AddShoppingCartIcon />
-                            </IconButton>
-                        </div>
-                    </Card>
-                </TableCell>
-            </TableRow>
+                    </div>
+                </Card>
+            </TableCell>
+        </TableRow>
         });
         setRecipes(recipeList);
         console.log(recipeList);
@@ -71,7 +85,7 @@ const Recipes = () => {
     return <div className='recipes__page'>
         <Ingredients/>
         <div className='recipes__container'>
-            <TableContainer component={Paper}>
+            <TableContainer style={{maxHeight:'inherit', maxWidth:'inherit', boxSizing:'border-box'}} component={Paper}>
                 <Table>
                     <TableHead>
                         <TableRow>

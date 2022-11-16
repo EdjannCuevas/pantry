@@ -8,29 +8,52 @@
     height: 100%;
 }
 
+.recipes__container {
+    height: 85%
+}
+.recipe__data__container {
+    display: flex;
+    flex-direction: row;
+}
+
 .food__image {
     height: 150px;
     width: 150px;
 }
 
-.recipes__container {
-    height: 85%
-}
 
 .recipe__info {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
 }
 
+.raw__data {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    margin-top: 0;
+}
+
+.icons__container {
+    display: flex;
+}
 .recipe__buttons__container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     width: 100%; 
 }
 
-.raw__data {
-    width: 70%;
-    margin: 10px;
-    margin-top: 0;
+
+.recipe__name {
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.icon__data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
+    width: 150px;
 }
