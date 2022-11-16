@@ -1,7 +1,7 @@
 import '../Styles/Recipes.css'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Table, TableBody, TableCell, TableContainer,TableHead, TableRow, Paper, IconButton } from '@mui/material';
+import { Button, Card, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton } from '@mui/material';
 import { LocalGroceryStore, HourglassTop, Restaurant, Scale } from '@mui/icons-material';
 import Ingredients from './Ingredients';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 const Recipes = () => {
     const navigate = useNavigate();
     const [recipes, setRecipes] = useState([]);
-    const [groceryList, setGroceryList] = useState([]);
     
     useEffect(() => {
         getRecipes();
