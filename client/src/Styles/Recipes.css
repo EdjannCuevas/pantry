@@ -36,7 +36,6 @@
 
 .icons__container {
     display: flex;
-    justify-content: space-evenly;
 }
 .recipe__buttons__container {
     display: flex;
