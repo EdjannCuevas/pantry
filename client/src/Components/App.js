@@ -5,6 +5,7 @@ import UserInput from './UserInput';
 import Recipes from './Recipes.js';
 import { Routes, Route } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import GroceryList from './GroceryList';
 
 const theme = createTheme({
   status: {
@@ -31,6 +32,7 @@ function App() {
         <Routes>
           <Route path='/' element={ <UserInput/> } />
           <Route path='/recipes' element={ <Recipes/> } />
+          <Route path='/lists' element={ <GroceryList/> } />
         </Routes>
       </ThemeProvider>
     </div>
