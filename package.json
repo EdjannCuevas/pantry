@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js",
-    "build": "npm install && npm run migrate && npm run seed && cd client && npm install && npm run build",
+    "build": "npm install && npm run migrate && cd client && npm install && npm run build",
     "migrate": "npx knex migrate:latest",
     "seed": "npx knex seed:run"
   },
@@ -23,6 +23,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "firebase": "^9.15.0",
     "knex": "^2.3.0",
     "path": "^0.12.7",
     "pg": "^8.8.0"
