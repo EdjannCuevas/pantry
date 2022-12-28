@@ -3,12 +3,12 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton } from '@mui/material';
 import { LocalGroceryStore, HourglassTop, Restaurant, Scale } from '@mui/icons-material';
-import Ingredients from './Ingredients';
 import { useNavigate } from 'react-router-dom';
 
-const Recipes = () => {
+const Recipes = ({ uid }) => {
     const navigate = useNavigate();
     const [recipes, setRecipes] = useState([]);
+    const [ingredients, setIngredients] = useState([]);
     
     useEffect(() => {
         getRecipes();
@@ -17,6 +17,7 @@ const Recipes = () => {
     async function addToGroceryList (name, calories, image, recipeIngredients, source) {
         try {
             await axios.post('grocery_list', {
+                    uid: uid,
                     name: name,
                     calories: calories,
                     ingredients_array: recipeIngredients,
@@ -31,15 +32,24 @@ const Recipes = () => {
     async function getRecipes () {
         const app_id = '59482d1c';
         const app_key = '6708bc487e05e9385e5d27f95ed728f3';
-        const fetchedIngredientsList = await axios.get('/ingredients');
+        const fetchedIngredientsList = await axios.get(`/ingredients/${uid}`);
         const ingredientsList = fetchedIngredientsList.data.map((ingredient) => {
             return ingredient.name 
         });
+        setIngredients(ingredientsList.map((ingredient) => {
+            return <Button
+                    disabled
+                    color='success'
+                    variant='contained'
+                    size='small'
+                    >x { ingredient }</Button>
+        }));
 
         const spacedIngredients = ingredientsList.join('%20and%20').toLowerCase();
         const fetchedRecipeList = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${spacedIngredients}&app_id=${app_id}&app_key=${app_key}`);
         const recipeList = fetchedRecipeList.data.hits.map((item) => {
             const recipe = item.recipe
+            console.log(recipe);
             const name = recipe.label;
             const image = recipe.image;
             const recipeIngredients = recipe.ingredientLines;
@@ -102,7 +112,17 @@ const Recipes = () => {
     
 
     return <div className='recipes__page'>
-        <Ingredients/>
+        <div className='ingredients__container__plus'>
+            <Button
+                variant='contained'
+                component='label'
+                onClick={(e) =>{
+                    e.preventDefault();
+                    navigate('/home');
+                }
+            }>BACK</Button>
+            {ingredients}
+        </div>
         <div className='recipes__container'>
             <TableContainer style={{maxHeight:'inherit', maxWidth:'inherit', boxSizing:'border-box'}} component={Paper}>
                 <Table>

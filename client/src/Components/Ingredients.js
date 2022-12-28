@@ -4,9 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 
-const Ingredients = ({ change, setChange, searchToggle, setSearchToggle }) => {
+const Ingredients = ({ change, setChange, searchToggle, setSearchToggle, uid }) => {
     const [ingredientsList, setIngredientsList] = useState([]);
     const navigate = useNavigate();
+    let count = 0;
 
     useEffect(() => {
         getIngredients();
@@ -18,22 +19,25 @@ const Ingredients = ({ change, setChange, searchToggle, setSearchToggle }) => {
         } catch (error) {
             console.log(error);
         }
-        setChange(change++);
+        count++;
+        setChange(count);
     };
 
-    async function addToPantry (id, name, time) {
+    async function addToPantry (uid, id, name, time) {
         try {
-            await axios.post('/pantry', { id : id, name : name, timestamp : time });
+            await axios.post('/pantry', { uid: uid, id : id, name : name, timestamp : time });
         } catch (error) {
             console.log(error)
         };
-        setChange(change++);
+        count++;
+        setChange(count);
     };
 
     async function getIngredients () {
-        const fetchedIngredients = await axios.get('/ingredients');
+        const fetchedIngredients = await axios.get(`/ingredients/${uid}`);
 
         const list = fetchedIngredients.data.map((ingredient) => {
+            const uid = ingredient.uid;
             const id = ingredient.pantry_id;
             const name = ingredient.name;
             const time = ingredient.timestamp;
@@ -43,7 +47,7 @@ const Ingredients = ({ change, setChange, searchToggle, setSearchToggle }) => {
                     variant='contained'
                     size='small'
                     onClick={() => {
-                        addToPantry(id, name, time);
+                        addToPantry(uid, id, name, time);
                         deleteIngredient(id);
                         }
                 }>x { name }</Button>
@@ -77,7 +81,7 @@ const Ingredients = ({ change, setChange, searchToggle, setSearchToggle }) => {
                         component='label'
                         onClick={(e) =>{
                             e.preventDefault();
-                            navigate('/');
+                            navigate('/home');
                             searchToggle(true);
                         }
                     }>BACK</Button>

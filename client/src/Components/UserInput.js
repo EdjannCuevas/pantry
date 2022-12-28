@@ -1,20 +1,23 @@
 import '../Styles/UserInput.css'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Pantry from './Pantry';
 import Ingredients from './Ingredients';
 import { Button, IconButton, FormHelperText , InputLabel, OutlinedInput } from '@mui/material';
 import { PhotoCamera } from '@mui/icons-material';
 
-const UserInput = () => {
-
+const UserInput = ({uid}) => {
     const [name, setName] = useState('');
     const [searchToggle, setSearchToggle] = useState(true);
     let [change, setChange] = useState(0);
+    let count = 0;
 
     const onSubmitForm = async () => {
             try {
-                await axios.post('/pantry', { name : name, timestamp : new Date() });
+                const test = await axios.post('/pantry', { uid: uid, name : name, timestamp : new Date() });
+                console.log(name, '🔥');
+                console.log(uid);
+                console.log(test);
             } catch (error) {
                 console.log(error)
             };
@@ -35,6 +38,17 @@ const UserInput = () => {
                     aria-describedby="my-helper-text"
                     />
                 <FormHelperText id="my-helper-text">Add items to your Pantry</FormHelperText>
+                <Button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        count++;
+                        setChange(count);
+                        onSubmitForm();
+                    }}
+                    variant='contained'
+                    component="label">
+                    Add
+                </Button>
                 <Button 
                     variant='contained'
                     component="label">
@@ -52,13 +66,14 @@ const UserInput = () => {
                 </IconButton>
             </form>
             <Ingredients
+                uid = { uid }
                 setChange = { setChange }
                 change = { change }
                 setSearchToggle = { setSearchToggle }
                 searchToggle = { searchToggle }
             />
         </div>
-            <Pantry setChange = { setChange } change = { change }/>
+            <Pantry uid = { uid } setChange = { setChange } change = { change }/>
     </div>
     ;
 };

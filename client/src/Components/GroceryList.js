@@ -1,10 +1,10 @@
 import '../Styles/GroceryList.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, Paper, TableHead, TableRow, Card, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Table, TableCell, TableContainer } from '@mui/material';
+import { Button, Paper, TableHead, TableRow, Card, List, ListItem, ListItemIcon, ListItemText, Table, TableCell, TableContainer } from '@mui/material';
 import { CheckBox } from '@mui/icons-material';
 
-const GroceryList = () => {
+const GroceryList = ({ uid }) => {
     const [groceryList, setGroceryList] = useState([]);
     const [checked, setChecked] = useState(true);
     let [toggle, setToggle] = useState(0)
@@ -27,7 +27,7 @@ const GroceryList = () => {
     };
 
     async function getGroceryList () {
-        const fetchedList = await axios.get('/grocery_list');
+        const fetchedList = await axios.get(`/grocery_list/${uid}`);
         const list = fetchedList.data.map((list) => {
             const id = list.id;
             const name = list.name;

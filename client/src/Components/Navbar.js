@@ -10,7 +10,7 @@ const Navbar = () => {
         <div>
             <Home
                 onClick={() => {
-                    navigate('/');
+                    navigate('/home');
                 }}
                 sx={{ fontSize: 40 }}
             />

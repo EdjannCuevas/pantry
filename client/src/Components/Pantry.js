@@ -6,12 +6,23 @@ import { Button, Table, TableBody, TableCell, TableContainer,TableHead, TableRow
 import { Delete } from '@mui/icons-material';
 
 
-const Pantry = ({ change, setChange }) => {
+const Pantry = ({ change, setChange, uid }) => {
     const [pantryList, setPantryList] = useState([]);
+    let count = 0;
 
     useEffect(() => {
         getPantry();
     },[change]);
+
+    
+    async function fetchImage(url) {
+        const img = new Image();
+        return new Promise((res, rej) => {
+            img.onload = () => res(img);
+            img.onerror = e => rej(e);
+            img.src = url;
+        });
+    }
 
     function timeDuration (time) {
         const duration = moment(time).fromNow();
@@ -24,16 +35,18 @@ const Pantry = ({ change, setChange }) => {
         } catch (error) {
             console.log(error);
         }
-        setChange(change++);
+        count++;
+        setChange(count);
     };
 
-    async function addToIngredients (id, name, time) {
+    async function addToIngredients (uid, id, name, time) {
         try {
-            await axios.post('/ingredients', { pantry_id: id, name : name, timestamp : time });
+            await axios.post('/ingredients', { uid: uid, pantry_id: id, name : name, timestamp : time });
         } catch (error) {
             console.log(error)
         };
-        setChange(change++);
+        change++
+        setChange(count);
     };
 
     async function editItem (id, name) {
@@ -42,12 +55,14 @@ const Pantry = ({ change, setChange }) => {
         } catch (error) {
             console.log(error);
         }
-        setChange(change++);
+        count++;
+        setChange(count);
     };
     
     async function getPantry () {
-        const fetchPantryList = await axios.get('/pantry');
+        const fetchPantryList = await axios.get(`/pantry/${uid}`);
         const list = fetchPantryList.data.map((item) => {
+            const uid = item.uid;
             const id = item.id;
             const name = item.name;
             const time = item.timestamp;
@@ -57,7 +72,7 @@ const Pantry = ({ change, setChange }) => {
                     <Button 
                             variant='outlined'
                             onClick={() => {
-                            addToIngredients(id, name, time);
+                            addToIngredients(uid, id, name, time);
                             deleteItem(id);
                             }
                         }>+</Button>
