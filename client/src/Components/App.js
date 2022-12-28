@@ -1,11 +1,14 @@
 import '../Styles/App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import NavBar from './Navbar';
 import UserInput from './UserInput';
 import Recipes from './Recipes.js';
 import { Routes, Route } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import GroceryList from './GroceryList';
+import SignIn from './auth/SignIn';
+import SignUp from './auth/SignUp';
+import AuthDetails from './auth/AuthDetails';
 
 const theme = createTheme({
   status: {
@@ -24,15 +27,18 @@ const theme = createTheme({
 });
 
 function App() {
+  const [uid, setUid] = useState('');
   
   return (
     <div className="App">
       <NavBar/>
       <ThemeProvider theme={theme}>
         <Routes>
-          <Route path='/' element={ <UserInput/> } />
-          <Route path='/recipes' element={ <Recipes/> } />
-          <Route path='/lists' element={ <GroceryList/> } />
+          <Route path='/' element={ <SignIn setUid={setUid}/>}/>
+          <Route path='/signup' element={ <SignUp/>}/>
+          <Route path='/home' element={ <UserInput uid={uid}/> }/>
+          <Route path='/recipes' element={ <Recipes uid={uid}/> }/>
+          <Route path='/lists' element={ <GroceryList uid={uid}/> }/>
         </Routes>
       </ThemeProvider>
     </div>
