@@ -10,10 +10,12 @@ function setUpServer () {
     app.use(express.json());
     app.use(express.static(path.resolve(__dirname,'../client/build')));
 
-    app.get('/pantry', async (req, res) => {
+    app.get('/pantry/:uid', async (req, res) => {
+        const { uid } = req.params;
         try {
             const pantry = await db('pantry')
-                .select('*');
+                .select('*')
+                .where({uid: uid})
             res.status(201).send(pantry);
 
         } catch (error) {
@@ -73,10 +75,12 @@ function setUpServer () {
         };
     });
 
-    app.get('/ingredients', async (req, res) => {
+    app.get('/ingredients/:uid', async (req, res) => {
+        const { uid } = req.params;
         try {
             const ingredients = await db('ingredients')
-                .select('*');
+                .select('*')
+                .where({uid : uid})
             res.status(201).send(ingredients);
 
         } catch (error) {
@@ -136,10 +140,12 @@ function setUpServer () {
         };
     });
 
-    app.get('/grocery_list', async (req, res) => {
+    app.get('/grocery_list/:uid', async (req, res) => {
+        const  { uid } = req.params;
         try {
             const grocery_list = await db('grocery_list')
-                .select('*');
+                .select('*')
+                .where({uid: uid})
             res.status(201).send(grocery_list);
 
         } catch (error) {
