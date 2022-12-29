@@ -14,6 +14,10 @@ const Recipes = ({ uid, search }) => {
         getRecipes();
     },[]);
 
+    const openInNewTab = url => {
+        window.open(url, '_blank', 'noopener,noreferrer');
+    };
+
     async function addToGroceryList (name, calories, image, recipeIngredients, source) {
         try {
             await axios.post('grocery_list', {
@@ -87,9 +91,7 @@ const Recipes = ({ uid, search }) => {
                             <Button className='view__button'
                                 variant='contained'
                                 color='primary'
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                href={ source }
+                                onClick={() => openInNewTab(source)}
                                 >Recipe
                             </Button>
                             <IconButton

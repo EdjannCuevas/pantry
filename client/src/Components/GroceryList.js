@@ -15,7 +15,11 @@ const GroceryList = ({ uid }) => {
 
     const handleChange = (event) => {
         setChecked(event.target.checked);
-      };
+    };
+
+    const openInNewTab = url => {
+        window.open(url, '_blank', 'noopener,noreferrer');
+    };
 
     async function removeGroceryList (id) {
         try {
@@ -65,10 +69,8 @@ const GroceryList = ({ uid }) => {
                         { ingredientsCheckList }
                     </List>
                     <div className='buttons__container'>
-                        <Button 
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={ recipeSource }
+                        <Button
+                            onClick={() => openInNewTab(recipeSource)}
                             >Recipe
                         </Button>
                         <Button 
