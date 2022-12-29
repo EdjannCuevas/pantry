@@ -8,7 +8,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import GroceryList from './GroceryList';
 import SignIn from './auth/SignIn';
 import SignUp from './auth/SignUp';
-import AuthDetails from './auth/AuthDetails';
 
 const theme = createTheme({
   status: {
@@ -28,16 +27,17 @@ const theme = createTheme({
 
 function App() {
   const [uid, setUid] = useState('');
+  const [search, setSearch] = useState('');
   
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <NavBar/>
+        <NavBar search={search} setSearch={setSearch}/>
         <Routes>
           <Route path='/' element={ <SignIn setUid={setUid}/>}/>
           <Route path='/signup' element={ <SignUp/>}/>
           <Route path='/home' element={ <UserInput uid={uid}/> }/>
-          <Route path='/recipes' element={ <Recipes uid={uid}/> }/>
+          <Route path='/recipes' element={ <Recipes search={search} uid={uid}/> }/>
           <Route path='/lists' element={ <GroceryList uid={uid}/> }/>
         </Routes>
       </ThemeProvider>

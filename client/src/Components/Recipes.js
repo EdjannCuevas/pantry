@@ -1,11 +1,11 @@
 import '../Styles/Recipes.css'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton } from '@mui/material';
+import { Button, Card, Table, TableBody, TableCell, TableContainer, TableRow, Paper, IconButton } from '@mui/material';
 import { LocalGroceryStore, HourglassTop, Restaurant, Scale } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
-const Recipes = ({ uid }) => {
+const Recipes = ({ uid, search }) => {
     const navigate = useNavigate();
     const [recipes, setRecipes] = useState([]);
     const [ingredients, setIngredients] = useState([]);
@@ -45,7 +45,7 @@ const Recipes = ({ uid }) => {
                     >x { ingredient }</Button>
         }));
 
-        const spacedIngredients = ingredientsList.join('%20and%20').toLowerCase();
+        const spacedIngredients = (search ? search : ingredientsList).join('%20and%20').toLowerCase();
         const fetchedRecipeList = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${spacedIngredients}&app_id=${app_id}&app_key=${app_key}`);
         const recipeList = fetchedRecipeList.data.hits.map((item) => {
             const recipe = item.recipe;
@@ -62,7 +62,7 @@ const Recipes = ({ uid }) => {
             <TableCell className='table__cell'>
                 <Card className='recipe__data__container'>
                     <div className='recipe__info'>
-                        <img className='food__image'  alt='recipe-photo' src={ image }/>
+                        <img className='food__image'  alt='dish' src={ image }/>
                         <div className='raw__data__container'>
                             <div className='raw__data'>
                                 <p className='recipe__name'>{ name }</p>
