@@ -3,14 +3,15 @@ import React, { useState, useEffect } from "react";
 import stirfry from '../Styles/stirfry.gif';
 import { useNavigate } from 'react-router-dom';
 import { Home, LocalGroceryStoreOutlined, Logout, Search } from '@mui/icons-material';
-import { AppBar, Box, Toolbar, InputBase } from '@mui/material';
+import { AppBar, Box, Toolbar, InputBase, Dialog, Button, DialogTitle, DialogActions } from '@mui/material';
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase";
 
 const Navbar = ({search, setSearch}) => {
     const navigate = useNavigate();
     const [authUser, setAuthUser] = useState(null);
-
+    const [openDialog, setOpenDialog] = React.useState(false);
+    
     useEffect(() => {
         const listen = onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -26,15 +27,29 @@ const Navbar = ({search, setSearch}) => {
         }
     }, [])
 
+    const handleClickOpen = () => {
+        setOpenDialog(true);
+    };
+  
+    const handleClose = () => {
+        setOpenDialog(false);
+    };
+
+    const handleLogOut = () => {
+        setOpenDialog(false);
+        userSignOut();
+        navigate('/');
+    };
+
     const userSignOut = () => {
         signOut(auth).then(() => {
             console.log('sign out was successful')
         }).catch(err => console.log(err));
-    }
+    };
 
-      const handleInputChange = () => {
+    const handleInputChange = () => {
         search.length > 0 ? navigate('/recipes') : console.log('no input');
-      }
+    };
 
     return <Box sx={{flexGrow: 1}}>
         <AppBar color='primary' className='navBar' elevatoin= '2'>
@@ -75,11 +90,26 @@ const Navbar = ({search, setSearch}) => {
                     color="inherit"
                     sx={{ fontSize: 40}}
                     onClick={(e) => {
+                        handleClickOpen();
                         e.preventDefault();
-                        userSignOut();
-                        navigate('/');
                     }}
                 />
+                <Dialog
+                    open={openDialog}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">
+                        {`Are you sure you want to log out, ${authUser ? authUser.email : '🔥'}?`}
+                    </DialogTitle>
+                    <DialogActions>
+                        <Button variant='standard' onClick={handleClose}>cancel</Button>
+                        <Button variant='contained' onClick={handleLogOut} autoFocus>
+                            Logout
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </Toolbar>
         </AppBar>
     </Box>

@@ -25,7 +25,7 @@ const UserInput = ({uid}) => {
 
     return <div className='home__top'>
         <Card raised='true' className='user__input__container'>
-            <form onSubmit={onSubmitForm}>
+            <div>
                 <InputLabel htmlFor="my-input">Input food item</InputLabel>
                 <OutlinedInput
                     // color='white'
@@ -65,7 +65,7 @@ const UserInput = ({uid}) => {
                         type="file" />
                     <PhotoCamera />
                 </IconButton>
-            </form>
+            </div>
             <Ingredients
                 uid = { uid }
                 setChange = { setChange }
