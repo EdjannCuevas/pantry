@@ -88,7 +88,7 @@ const GroceryList = ({ uid }) => {
     return <div className='page__container'>
         <TableContainer
             elevation='5'
-            sx={{width: '90%', height: '95%'}}
+            sx={{width: '90%', height: '100%'}}
             component={Paper}
         >
             <Table>

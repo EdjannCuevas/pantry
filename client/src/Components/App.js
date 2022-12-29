@@ -31,8 +31,8 @@ function App() {
   
   return (
     <div className="App">
-      <NavBar/>
       <ThemeProvider theme={theme}>
+        <NavBar/>
         <Routes>
           <Route path='/' element={ <SignIn setUid={setUid}/>}/>
           <Route path='/signup' element={ <SignUp/>}/>
