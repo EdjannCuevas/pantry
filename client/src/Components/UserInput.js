@@ -74,7 +74,7 @@ const UserInput = ({uid}) => {
                 searchToggle = { searchToggle }
             />
         </Card>
-            <Pantry uid = { uid } setChange = { setChange } change = { change }/>
+        <Pantry uid = { uid } setChange = { setChange } change = { change }/>
     </div>
     ;
 };
