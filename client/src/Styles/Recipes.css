@@ -4,55 +4,65 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 90%;
+    height: 91%;
 }
 
 .ingredients__container__plus {
-    height: 10%;
+    height: 7%;
     width: 100%;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
+.raw__data__container {
+    width: 70%;
+}
+
 .recipes__container {   
     width: 90%;
-    height: 100%
+    height: 91%;
 }
 .recipe__data__container {
     display: flex;
-    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 .food__image {
-    height: 220px;
-    width: 220px;
+    height: 100%;
+    width: 20%;
 }
 
-
 .recipe__info {
+    overflow: hidden;
     display: flex;
     flex-direction: row;
+    width: 100%;
+    height: 100%;
 }
 
 .raw__data {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    margin: 10px;
-    margin-top: 0;
 }
 
 .icons__container {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .recipe__buttons__container {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    width: 100%; 
+    width: 20%; 
 }
-
 
 .recipe__name {
     font-weight: bolder;
@@ -63,13 +73,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90px;
-    width: 150px;
 }
 
-.table__cell {
-    margin: 10px;
-}
 
 .view__button {
     display: flex;

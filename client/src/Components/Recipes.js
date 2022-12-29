@@ -48,8 +48,8 @@ const Recipes = ({ uid }) => {
         const spacedIngredients = ingredientsList.join('%20and%20').toLowerCase();
         const fetchedRecipeList = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${spacedIngredients}&app_id=${app_id}&app_key=${app_key}`);
         const recipeList = fetchedRecipeList.data.hits.map((item) => {
-            const recipe = item.recipe
-            console.log(recipe);
+            const recipe = item.recipe;
+
             const name = recipe.label;
             const image = recipe.image;
             const recipeIngredients = recipe.ingredientLines;
@@ -63,7 +63,7 @@ const Recipes = ({ uid }) => {
                 <Card className='recipe__data__container'>
                     <div className='recipe__info'>
                         <img className='food__image'  alt='recipe-photo' src={ image }/>
-                        <div>
+                        <div className='raw__data__container'>
                             <div className='raw__data'>
                                 <p className='recipe__name'>{ name }</p>
                                 <div className='icons__container'>
@@ -77,7 +77,7 @@ const Recipes = ({ uid }) => {
                                     </Card>
                                     <Card className='icon__data'>
                                         <Scale sx={{ fontSize: 50 }}/>
-                                        <b>Calories per serving: { calories }</b>
+                                        <b>Calories: { calories }</b>
                                     </Card>
                                 </div>
                             <p><b>Ingredients:</b> { recipeIngredients.join(', ') } </p>
@@ -88,7 +88,7 @@ const Recipes = ({ uid }) => {
                                 variant='contained'
                                 color='primary'
                                 href={ source }
-                                >View Recipe
+                                >Recipe
                             </Button>
                             <IconButton
                                 variant='contained'
@@ -124,7 +124,7 @@ const Recipes = ({ uid }) => {
             {ingredients}
         </div>
         <div className='recipes__container' >
-            <TableContainer elevation='5' sx={{height:'95%'}} component={Paper}>
+            <TableContainer elevation='5' sx={{height:'100%'}} component={Paper}>
                 <Table>
                     <TableBody>
                         { recipes }
