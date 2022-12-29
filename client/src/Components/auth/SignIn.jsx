@@ -51,7 +51,7 @@ const SignIn = ({ setUid }) => {
                     ></TextField>
                     <Button variant='contained' type="submit" onClick={signIn} >Log in</Button>
                 </FormControl>
-                <p>Don't have and account?</p>
+                <p>Don't have an account?</p>
                 <Button onClick={(e) => {
                     e.preventDefault();
                     navigate('/signup');
