@@ -56,7 +56,7 @@ const Navbar = ({search, setSearch}) => {
                     style={{cursor:'pointer'}}
                     onClick={(e) => {
                         e.preventDefault();
-                        navigate('/');
+                        navigate('/home');
                     }
                     }>PANTRY
                 </h1>
