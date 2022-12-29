@@ -1,7 +1,7 @@
 import '../Styles/GroceryList.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, Paper, Card, List, ListItem, ListItemIcon, ListItemText, Table, TableCell, TableContainer } from '@mui/material';
+import { Button, Paper, Card, List, ListItem, ListItemIcon, ListItemText, Table, TableContainer } from '@mui/material';
 import { CheckBox } from '@mui/icons-material';
 
 const GroceryList = ({ uid }) => {

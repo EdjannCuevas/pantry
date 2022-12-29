@@ -86,7 +86,7 @@ const Pantry = ({ change, setChange, uid }) => {
     };
     return <div className='pantry__container'>
         <TableContainer elevation='5' className='table__container' component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+            <Table stickyHeader='true' sx={{ minWidth: 650 }} aria-label='simple table'>
                 <TableHead>
                     <TableRow>
                         <TableCell>+</TableCell>

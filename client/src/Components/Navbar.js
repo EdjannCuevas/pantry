@@ -3,10 +3,11 @@ import React from "react";
 import stirfry from '../Styles/stirfry.gif';
 import { useNavigate } from 'react-router-dom';
 import { Home, LocalGroceryStoreOutlined, Search } from '@mui/icons-material';
+import { Card } from '@mui/material';
 const Navbar = () => {
     const navigate = useNavigate();
 
-    return <div className="navbar__container">
+    return <Card elevatoin= '2' className="navbar__container">
         <div>
             <Home
                 onClick={() => {
@@ -41,7 +42,7 @@ const Navbar = () => {
                 sx={{ fontSize: 40 }}
             />
         </div>
-    </div>
+    </Card>
 };
 
 export default Navbar;
