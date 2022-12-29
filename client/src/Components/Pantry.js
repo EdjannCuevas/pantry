@@ -14,16 +14,6 @@ const Pantry = ({ change, setChange, uid }) => {
         getPantry();
     },[change]);
 
-    
-    async function fetchImage(url) {
-        const img = new Image();
-        return new Promise((res, rej) => {
-            img.onload = () => res(img);
-            img.onerror = e => rej(e);
-            img.src = url;
-        });
-    }
-
     function timeDuration (time) {
         const duration = moment(time).fromNow();
         return duration;
@@ -49,15 +39,15 @@ const Pantry = ({ change, setChange, uid }) => {
         setChange(count);
     };
 
-    async function editItem (id, name) {
-        try {
-            await axios.put(`pantry/${id}`, {name: name});
-        } catch (error) {
-            console.log(error);
-        }
-        count++;
-        setChange(count);
-    };
+    // async function editItem (id, name) {
+    //     try {
+    //         await axios.put(`pantry/${id}`, {name: name});
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    //     count++;
+    //     setChange(count);
+    // };
     
     async function getPantry () {
         const fetchPantryList = await axios.get(`/pantry/${uid}`);
@@ -95,8 +85,7 @@ const Pantry = ({ change, setChange, uid }) => {
         setPantryList(list);
     };
     return <div className='pantry__container'>
-        <h1>Pantry</h1>
-        <TableContainer component={Paper}>
+        <TableContainer elevation='5' className='table__container' component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label='simple table'>
                 <TableHead>
                     <TableRow>

@@ -1,7 +1,7 @@
 import '../Styles/GroceryList.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, Paper, TableHead, TableRow, Card, List, ListItem, ListItemIcon, ListItemText, Table, TableCell, TableContainer } from '@mui/material';
+import { Button, Paper, Card, List, ListItem, ListItemIcon, ListItemText, Table, TableCell, TableContainer } from '@mui/material';
 import { CheckBox } from '@mui/icons-material';
 
 const GroceryList = ({ uid }) => {
@@ -85,17 +85,13 @@ const GroceryList = ({ uid }) => {
     }
 
 
-    return <div>
+    return <div className='page__container'>
         <TableContainer
-            style={{maxHeight:'inherit', maxWidth:'inherit', boxSizing:'border-box'}}
+            elevation='5'
+            sx={{width: '90%', height: '95%'}}
             component={Paper}
         >
             <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell align='center'>GROCERY LISTS</TableCell>
-                    </TableRow>
-                </TableHead>
                 <div className="GroceryList__container">
                         { groceryList }
                 </div>

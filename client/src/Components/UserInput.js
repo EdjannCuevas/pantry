@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Pantry from './Pantry';
 import Ingredients from './Ingredients';
-import { Button, IconButton, FormHelperText , InputLabel, OutlinedInput } from '@mui/material';
+import { Button, IconButton, FormHelperText , InputLabel, OutlinedInput, Card } from '@mui/material';
 import { PhotoCamera } from '@mui/icons-material';
 
 const UserInput = ({uid}) => {
@@ -24,10 +24,11 @@ const UserInput = ({uid}) => {
     };
 
     return <div className='home__top'>
-        <div className='user__input__container'>
+        <Card raised='true' className='user__input__container'>
             <form onSubmit={onSubmitForm}>
                 <InputLabel htmlFor="my-input">Input food item</InputLabel>
                 <OutlinedInput
+                    // color='white'
                     variant="outlined"
                     onChange={(e) => {
                         e.preventDefault();
@@ -72,7 +73,7 @@ const UserInput = ({uid}) => {
                 setSearchToggle = { setSearchToggle }
                 searchToggle = { searchToggle }
             />
-        </div>
+        </Card>
             <Pantry uid = { uid } setChange = { setChange } change = { change }/>
     </div>
     ;

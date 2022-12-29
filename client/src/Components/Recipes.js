@@ -123,14 +123,9 @@ const Recipes = ({ uid }) => {
             }>BACK</Button>
             {ingredients}
         </div>
-        <div className='recipes__container'>
-            <TableContainer style={{maxHeight:'inherit', maxWidth:'inherit', boxSizing:'border-box'}} component={Paper}>
+        <div className='recipes__container' >
+            <TableContainer elevation='5' sx={{height:'95%'}} component={Paper}>
                 <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align='center'>RESULTS</TableCell>
-                        </TableRow>
-                    </TableHead>
                     <TableBody>
                         { recipes }
                     </TableBody>
