@@ -87,6 +87,8 @@ const Recipes = ({ uid, search }) => {
                             <Button className='view__button'
                                 variant='contained'
                                 color='primary'
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 href={ source }
                                 >Recipe
                             </Button>

@@ -66,6 +66,8 @@ const GroceryList = ({ uid }) => {
                     </List>
                     <div className='buttons__container'>
                         <Button 
+                            target="_blank"
+                            rel="noopener noreferrer"
                             href={ recipeSource }
                             >Recipe
                         </Button>
