@@ -1,9 +1,9 @@
 import '../Styles/UserInput.css'
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Pantry from './Pantry';
 import Ingredients from './Ingredients';
-import { Button, IconButton, FormHelperText , InputLabel, OutlinedInput, Card } from '@mui/material';
+import { Button, IconButton, InputLabel, OutlinedInput, Card } from '@mui/material';
 import { PhotoCamera } from '@mui/icons-material';
 import { getUid } from './userTokenManager';
 
@@ -23,22 +23,23 @@ const UserInput = () => {
     };
 
     return <div className='home__top'>
-        <Card raised='true' className='user__input__container'>
-            <div className='input__and__buttons__container'>
-                <InputLabel htmlFor="my-input">Input food item</InputLabel>
-                <OutlinedInput
-                    // color='white'
-                    variant="outlined"
-                    onChange={(e) => {
-                        e.preventDefault();
-                        setName(e.target.value);
-                        }
-                    } 
-                    id="my-input"
-                    aria-describedby="my-helper-text"
-                    />
-                <FormHelperText id="my-helper-text">Add items to your Pantry</FormHelperText>
-                <div className='buttons__container'>
+        <div className='user__input__container'>
+            <Card raised='true' className='input__and__buttons__container'>
+                <div className='input__container'>
+                    <InputLabel htmlFor="my-input">Add items to your Pantry</InputLabel>
+                    <OutlinedInput
+                        variant="outlined"
+                        onChange={(e) => {
+                            e.preventDefault();
+                            setName(e.target.value);
+                            }
+                        } 
+                        id="my-input"
+                        aria-describedby="my-helper-text"
+                        />
+                </div>
+                
+                <div className='add__button__container'>
                     <Button
                         onClick={(e) => {
                             count++;
@@ -66,14 +67,14 @@ const UserInput = () => {
                         <PhotoCamera />
                     </IconButton>
                 </div>
-            </div>
+            </Card>
             <Ingredients
                 setChange = { setChange }
                 change = { change }
                 setSearchToggle = { setSearchToggle }
                 searchToggle = { searchToggle }
             />
-        </Card>
+        </div>
         <Pantry setChange = { setChange } change = { change }/>
     </div>
     ;

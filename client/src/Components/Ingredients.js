@@ -2,7 +2,7 @@ import '../Styles/Ingredients.css'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { Button, Card } from '@mui/material';
 import { getUid } from './userTokenManager';
 
 const Ingredients = ({ change, setChange }) => {
@@ -55,7 +55,7 @@ const Ingredients = ({ change, setChange }) => {
         });
         setIngredientsList(list);
     };
-    return <div className='ingredients__container'>
+    return <Card elevation={5} className='ingredients__container'>
         <h3>INGREDIENTS</h3>
         <div className='ingredients__list__container'>
             <div>
@@ -88,7 +88,7 @@ const Ingredients = ({ change, setChange }) => {
             }>SEARCH</Button>
         </div>
         )}
-    </div>
+    </Card>
 };
 
 export default Ingredients;
