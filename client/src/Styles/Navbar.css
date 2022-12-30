@@ -14,8 +14,9 @@
 
 .navBar {
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     height: 7%;
+    width: 100vw;
 }
 
 .logo__container {

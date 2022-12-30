@@ -53,30 +53,33 @@ const Navbar = ({search, setSearch}) => {
 
     return <Box sx={{flexGrow: 1}}>
         <AppBar color='primary' className='navBar' elevatoin= '2'>
-            <Toolbar sx={{justifyContent: 'spaceBetweed'}}>
-                <Home
-                    onClick={() => {
-                        navigate('/home');
-                    }}
-                    sx={{ fontSize: 40 }}
-                />
-                <LocalGroceryStoreOutlined
-                    onClick={() => {
-                        navigate('/lists');
-                    }}
-                    sx={{ fontSize: 40 }}
-                />
-                <h1
-                    id='app__name'
-                    style={{cursor:'pointer'}}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        navigate('/home');
-                    }
-                    }>PANTRY
-                </h1>
-                <img id='stirfry__gif' alt='stirfry_gif' src={stirfry}/>
+            <Toolbar>
+                    <Home
+                        style={{cursor:'pointer'}}
+                        onClick={() => {
+                            navigate('/home');
+                        }}
+                        sx={{ fontSize: 30, marginRight: 2}}
+                    />
+                    <LocalGroceryStoreOutlined
+                        style={{cursor:'pointer'}}
+                        onClick={() => {
+                            navigate('/lists');
+                        }}
+                        sx={{ fontSize: 30 }}
+                    />
+                    <h1
+                        id='app__name'
+                        style={{cursor:'pointer'}}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            navigate('/home');
+                        }
+                        }>PANTRY
+                    </h1>
+                    <img id='stirfry__gif' alt='stirfry_gif' src={stirfry}/>
                 <Search
+                    style={{cursor:'pointer', marginLeft: '55vw'}}
                     onClick={handleInputChange}
                 />
                 <InputBase
@@ -87,8 +90,9 @@ const Navbar = ({search, setSearch}) => {
                 >
                 </InputBase>
                 <Logout 
+                    style={{cursor:'pointer'}}
                     color="inherit"
-                    sx={{ fontSize: 40}}
+                    sx={{ fontSize: 30}}
                     onClick={(e) => {
                         handleClickOpen();
                         e.preventDefault();
