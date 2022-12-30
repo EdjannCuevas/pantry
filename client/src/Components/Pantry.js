@@ -87,7 +87,17 @@ const Pantry = ({ change, setChange, uid }) => {
     // };
     
     return <div className='pantry__container'>
-        <TableContainer elevation='5' sx={{height:'100%'}} className='table__container' component={Paper}>
+        <TableContainer
+            elevation='5'
+            sx={{
+                height:'100%',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'flexStart',
+                alignItems: 'flexStart',
+            }}
+            component={Paper}
+        >
             <Table stickyHeader={true} aria-label='simple table'>
                 <TableHead sx={{ height: '5%',marginBottom: '5%'}}>
                     <TableRow>
@@ -98,7 +108,7 @@ const Pantry = ({ change, setChange, uid }) => {
                         <TableCell align='right'>Delete</TableCell>
                     </TableRow>
                 </TableHead>
-                <TableBody sx={{ height: '95%'}}>
+                <TableBody>
                     { pantryList }
                 </TableBody>
             </Table>
