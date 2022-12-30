@@ -25,7 +25,7 @@ const UserInput = ({uid}) => {
 
     return <div className='home__top'>
         <Card raised='true' className='user__input__container'>
-            <div>
+            <div className='input__and__buttons__container'>
                 <InputLabel htmlFor="my-input">Input food item</InputLabel>
                 <OutlinedInput
                     // color='white'
@@ -39,32 +39,34 @@ const UserInput = ({uid}) => {
                     aria-describedby="my-helper-text"
                     />
                 <FormHelperText id="my-helper-text">Add items to your Pantry</FormHelperText>
-                <Button
-                    onClick={(e) => {
-                        e.preventDefault();
-                        count++;
-                        setChange(count);
-                        onSubmitForm();
-                    }}
-                    variant='contained'
-                    component="label">
-                    Add
-                </Button>
-                <Button 
-                    variant='contained'
-                    component="label">
-                    Receipt
-                    <input hidden accept="image/*" multiple type="file" />
-                </Button>
-                <IconButton
-                    color="primary"
-                    aria-label="upload picture"
-                    component="label">
-                    <input
-                        hidden accept="image/*"
-                        type="file" />
-                    <PhotoCamera />
-                </IconButton>
+                <div className='buttons__container'>
+                    <Button
+                        onClick={(e) => {
+                            count++;
+                            setChange(count);
+                            onSubmitForm();
+                        }}
+                        variant='contained'
+                        style={{marginRight: '3%'}}
+                        component="label">
+                        Add
+                    </Button>
+                    <Button 
+                        variant='contained'
+                        component="label">
+                        Receipt
+                        <input hidden accept="image/*" multiple type="file" />
+                    </Button>
+                    <IconButton
+                        color="primary"
+                        aria-label="upload picture"
+                        component="label">
+                        <input
+                            hidden accept="image/*"
+                            type="file" />
+                        <PhotoCamera />
+                    </IconButton>
+                </div>
             </div>
             <Ingredients
                 uid = { uid }

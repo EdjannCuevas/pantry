@@ -65,6 +65,7 @@ const Ingredients = ({ change, setChange, searchToggle, setSearchToggle, uid }) 
             ? (
                 <div className='search__button__container' >
                     <Button
+                        style={{marginTop: '2%'}}
                         variant='contained'
                         component='label'
                         onClick={(e) => {

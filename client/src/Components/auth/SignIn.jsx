@@ -49,7 +49,7 @@ const SignIn = ({ setUid }) => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     ></TextField>
-                    <Button variant='contained' type="submit" onClick={signIn} >Log in</Button>
+                    <Button style={{marginTop: '3%', marginBottom: '3%'}} variant='contained' type="submit" onClick={signIn} >Log in</Button>
                 </FormControl>
                 <p>Don't have an account?</p>
                 <Button onClick={(e) => {
