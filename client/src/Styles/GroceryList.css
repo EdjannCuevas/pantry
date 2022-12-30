@@ -1,6 +1,7 @@
-.GroceryList__container {
+.groceryList__container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr min-content);
+    grid-auto-rows: 1fr;
 }
 
 .page__container {
@@ -8,20 +9,23 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 93%;
-    padding-top: 7%; 
+    height: 100%;
+    padding-top: 5%; 
 }
 
-.table__container {
+.recipe__image__container {
+    width: 100%;
+    height: 30%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
 }
 
-.food__image {
-    height: 150px;
-    width: 150px;
+.recipe__image {
+    padding-bottom: 2%;
+    height: 100%;
+    width: 60%;
 }
 
 .recipe__name {
@@ -29,26 +33,32 @@
     justify-content: center;
     align-items: center;
     font-weight: bolder;
-    font-size: larger;
+    font-size: 1em;
 }
 
-.card__container {
+.list__card__container {
+    width: 100%;
+    height: 28%;
+}
+
+.list__card {
     margin: 30px;
+    padding: 30px;
+    width: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* background-color: lightblue; */
     flex-direction: column;
 }
 
-.list__container {
-    max-height: 700px;
-}
+
 
 .buttons__container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    height: 70;
-    width: 70;
+    height: 10%;
+    width: 100%;
 }
