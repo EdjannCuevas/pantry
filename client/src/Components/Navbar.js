@@ -53,7 +53,9 @@ const Navbar = ({search, setSearch}) => {
 
     return <Box sx={{flexGrow: 1}}>
         <AppBar color='primary' className='navBar' elevatoin= '2'>
-            <Toolbar>
+            <Toolbar sx={{width: '100%'}}>
+                <div className='button__container'>
+
                     <Home
                         style={{cursor:'pointer'}}
                         onClick={() => {
@@ -78,42 +80,48 @@ const Navbar = ({search, setSearch}) => {
                         }>PANTRY
                     </h1>
                     <img id='stirfry__gif' alt='stirfry_gif' src={stirfry}/>
-                <Search
-                    style={{cursor:'pointer', marginLeft: '55vw'}}
-                    onClick={handleInputChange}
-                />
-                <InputBase
-                    variant='filled'
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Search…"
-                    inputProps={{ 'aria-label': 'search' }}
-                >
-                </InputBase>
-                <Logout 
-                    style={{cursor:'pointer'}}
-                    color="inherit"
-                    sx={{ fontSize: 30}}
-                    onClick={(e) => {
-                        handleClickOpen();
-                        e.preventDefault();
-                    }}
-                />
-                <Dialog
-                    open={openDialog}
-                    onClose={handleClose}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                >
-                    <DialogTitle id="alert-dialog-title">
-                        {`Are you sure you want to log out, ${authUser ? authUser.email : '🔥'}?`}
-                    </DialogTitle>
-                    <DialogActions>
-                        <Button variant='standard' onClick={handleClose}>cancel</Button>
-                        <Button variant='contained' onClick={handleLogOut} autoFocus>
-                            Logout
-                        </Button>
-                    </DialogActions>
-                </Dialog>
+
+                </div>
+                <div className='search__logout'>
+
+                    <Search
+                        style={{cursor:'pointer'}}
+                        onClick={handleInputChange}
+                    />
+                    <InputBase
+                        variant='filled'
+                        onChange={(e) => setSearch(e.target.value)}
+                        placeholder="Search…"
+                        inputProps={{ 'aria-label': 'search' }}
+                    >
+                    </InputBase>
+                    <Logout 
+                        style={{cursor:'pointer'}}
+                        color="inherit"
+                        sx={{ fontSize: 30}}
+                        onClick={(e) => {
+                            handleClickOpen();
+                            e.preventDefault();
+                        }}
+                    />
+                    <Dialog
+                        open={openDialog}
+                        onClose={handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DialogTitle id="alert-dialog-title">
+                            {`Are you sure you want to log out, ${authUser ? authUser.email : '🔥'}?`}
+                        </DialogTitle>
+                        <DialogActions>
+                            <Button variant='standard' onClick={handleClose}>cancel</Button>
+                            <Button variant='contained' onClick={handleLogOut} autoFocus>
+                                Logout
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                    
+                </div>
             </Toolbar>
         </AppBar>
     </Box>

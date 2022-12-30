@@ -27,6 +27,15 @@
 }
 
 .button__container {
+    width: 80%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.search__logout {
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
