@@ -61,34 +61,34 @@ const Ingredients = ({ change, setChange, searchToggle, setSearchToggle, uid }) 
             { ingredientsList }
             </div>
         </div>
-        {(searchToggle)
-            ? (
-                <div className='search__button__container' >
-                    <Button
-                        style={{marginTop: '2%'}}
-                        variant='contained'
-                        component='label'
-                        onClick={(e) => {
-                            e.preventDefault();
-                            navigate('/recipes');
-                            setSearchToggle(false);
-                        }
-                    }>SEARCH</Button>
-                </div>
-            ) : (
-                <div className='back__button__container' >
-                    <Button
-                        variant='contained'
-                        component='label'
-                        onClick={(e) =>{
-                            e.preventDefault();
-                            navigate('/home');
-                            searchToggle(true);
-                        }
-                    }>BACK</Button>
-                </div>
-            )
-        }
+        {(ingredientsList.length > 0) ? (
+            <div className='search__button__container' >
+            <Button
+                style={{marginTop: '2%'}}
+                variant='contained'
+                component='label'
+                onClick={(e) => {
+                    e.preventDefault();
+                    navigate('/recipes');
+                    setSearchToggle(false);
+                }
+            }>SEARCH</Button>
+        </div>
+        ) : (
+            <div className='search__button__container' >
+            <Button
+                style={{marginTop: '2%'}}
+                disabled
+                variant='contained'
+                component='label'
+                onClick={(e) => {
+                    e.preventDefault();
+                    navigate('/recipes');
+                    setSearchToggle(false);
+                }
+            }>SEARCH</Button>
+        </div>
+        )}
     </div>
 };
 
