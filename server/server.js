@@ -10,6 +10,26 @@ function setUpServer () {
     app.use(express.json());
     app.use(express.static(path.resolve(__dirname,'../client/build')));
 
+    app.get('/', (req,res) =>{
+        res.sendFile(path.resolve(__dirname,'../client/build/index.html'));
+    });
+
+    app.get('/home', (req,res) =>{
+        res.sendFile(path.resolve(__dirname,'../client/build/index.html'));
+    });
+
+    app.get('/lists', (req,res) =>{
+        res.sendFile(path.resolve(__dirname,'../client/build/index.html'));
+    });
+
+    app.get('/recipes', (req,res) =>{
+        res.sendFile(path.resolve(__dirname,'../client/build/index.html'));
+    });
+
+    app.get('/signup', (req,res) =>{
+        res.sendFile(path.resolve(__dirname,'../client/build/index.html'));
+    });
+
     app.get('/pantry/:uid', async (req, res) => {
         const { uid } = req.params;
         try {

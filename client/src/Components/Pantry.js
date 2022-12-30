@@ -25,7 +25,7 @@ const Pantry = ({ change, setChange }) => {
 
             return <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell>
-                    <Button 
+                    <Button
                         variant='outlined'
                         startIcon={<AddCircle/>}
                         onClick={() => {
@@ -39,7 +39,7 @@ const Pantry = ({ change, setChange }) => {
                 <TableCell>{timeDuration(time)}</TableCell>
                 <TableCell>-</TableCell>
                 <TableCell align='right'>
-                    <Button 
+                    <Button
                         variant='outlined'
                         startIcon={<Delete/>}
                         onClick={() => {
@@ -77,16 +77,6 @@ const Pantry = ({ change, setChange }) => {
         setChange(count);
     };
 
-    // async function editItem (id, name) {
-    //     try {
-    //         await axios.put(`pantry/${id}`, {name: name});
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    //     count++;
-    //     setChange(count);
-    // };
-    
     return <div className='pantry__container'>
         <TableContainer
             elevation='5'
