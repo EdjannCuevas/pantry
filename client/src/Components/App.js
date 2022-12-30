@@ -26,7 +26,6 @@ const theme = createTheme({
 });
 
 function App() {
-  const [uid, setUid] = useState('');
   const [search, setSearch] = useState('');
   
   return (
@@ -34,11 +33,11 @@ function App() {
       <ThemeProvider theme={theme}>
         <NavBar search={search} setSearch={setSearch}/>
         <Routes>
-          <Route path='/' element={ <SignIn setUid={setUid}/>}/>
+          <Route path='/' element={ <SignIn/>}/>
           <Route path='/signup' element={ <SignUp/>}/>
-          <Route path='/home' element={ <UserInput uid={uid}/> }/>
-          <Route path='/recipes' element={ <Recipes search={search} uid={uid}/> }/>
-          <Route path='/lists' element={ <GroceryList uid={uid}/> }/>
+          <Route path='/home' element={ <UserInput/> }/>
+          <Route path='/recipes' element={ <Recipes search={search}/> }/>
+          <Route path='/lists' element={ <GroceryList/> }/>
         </Routes>
       </ThemeProvider>
     </div>

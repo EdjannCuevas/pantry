@@ -5,8 +5,9 @@ import Pantry from './Pantry';
 import Ingredients from './Ingredients';
 import { Button, IconButton, FormHelperText , InputLabel, OutlinedInput, Card } from '@mui/material';
 import { PhotoCamera } from '@mui/icons-material';
+import { getUid } from './userTokenManager';
 
-const UserInput = ({uid}) => {
+const UserInput = () => {
     const [name, setName] = useState('');
     const [searchToggle, setSearchToggle] = useState(true);
     let [change, setChange] = useState(0);
@@ -14,9 +15,7 @@ const UserInput = ({uid}) => {
 
     const onSubmitForm = async () => {
             try {
-                const test = await axios.post('/pantry', { uid: uid, name : name, timestamp : new Date() });
-                console.log(name, '🔥');
-                console.log(uid);
+                const test = await axios.post('/pantry', { uid: getUid(), name : name, timestamp : new Date() });
                 console.log(test);
             } catch (error) {
                 console.log(error)
@@ -69,14 +68,13 @@ const UserInput = ({uid}) => {
                 </div>
             </div>
             <Ingredients
-                uid = { uid }
                 setChange = { setChange }
                 change = { change }
                 setSearchToggle = { setSearchToggle }
                 searchToggle = { searchToggle }
             />
         </Card>
-        <Pantry uid = { uid } setChange = { setChange } change = { change }/>
+        <Pantry setChange = { setChange } change = { change }/>
     </div>
     ;
 };

@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button, Paper, Card, List, ListItem, ListItemIcon, ListItemText, Table, TableContainer } from '@mui/material';
 import { CheckBox } from '@mui/icons-material';
+import { getUid } from './userTokenManager';
 
-const GroceryList = ({ uid }) => {
+const GroceryList = () => {
     const [groceryList, setGroceryList] = useState([]);
     const [checked, setChecked] = useState(true);
     let [toggle, setToggle] = useState(0)
@@ -31,7 +32,7 @@ const GroceryList = ({ uid }) => {
     };
 
     async function getGroceryList () {
-        const fetchedList = await axios.get(`/grocery_list/${uid}`);
+        const fetchedList = await axios.get(`/grocery_list/${getUid()}`);
         const list = fetchedList.data.map((list) => {
             const id = list.id;
             const name = list.name;

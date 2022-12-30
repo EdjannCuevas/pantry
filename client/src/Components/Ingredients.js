@@ -3,8 +3,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
+import { getUid } from './userTokenManager';
 
-const Ingredients = ({ change, setChange, searchToggle, setSearchToggle, uid }) => {
+const Ingredients = ({ change, setChange }) => {
     const [ingredientsList, setIngredientsList] = useState([]);
     const navigate = useNavigate();
     let count = 0;
@@ -34,7 +35,7 @@ const Ingredients = ({ change, setChange, searchToggle, setSearchToggle, uid }) 
     };
 
     async function getIngredients () {
-        const fetchedIngredients = await axios.get(`/ingredients/${uid}`);
+        const fetchedIngredients = await axios.get(`/ingredients/${getUid()}`);
 
         const list = fetchedIngredients.data.map((ingredient) => {
             const uid = ingredient.uid;
@@ -70,7 +71,6 @@ const Ingredients = ({ change, setChange, searchToggle, setSearchToggle, uid }) 
                 onClick={(e) => {
                     e.preventDefault();
                     navigate('/recipes');
-                    setSearchToggle(false);
                 }
             }>SEARCH</Button>
         </div>
@@ -84,7 +84,6 @@ const Ingredients = ({ change, setChange, searchToggle, setSearchToggle, uid }) 
                 onClick={(e) => {
                     e.preventDefault();
                     navigate('/recipes');
-                    setSearchToggle(false);
                 }
             }>SEARCH</Button>
         </div>

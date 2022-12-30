@@ -4,9 +4,10 @@ import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { Button, Table, TableBody, TableCell, TableContainer,TableHead, TableRow, Paper } from '@mui/material';
 import { AddCircle, Delete } from '@mui/icons-material';
+import { getUid } from './userTokenManager';
 
 
-const Pantry = ({ change, setChange, uid }) => {
+const Pantry = ({ change, setChange }) => {
     const [pantryList, setPantryList] = useState([]);
     let count = 0;
 
@@ -15,7 +16,7 @@ const Pantry = ({ change, setChange, uid }) => {
     },[change]);
 
     const getPantry = async () => {
-        const fetchPantryList = await axios.get(`/pantry/${uid}`);
+        const fetchPantryList = await axios.get(`/pantry/${getUid()}`);
         const list = fetchPantryList.data.map((item) => {
             const uid = item.uid;
             const id = item.id;

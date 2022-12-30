@@ -4,8 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Table, TableBody, TableCell, TableContainer, TableRow, Paper, IconButton } from '@mui/material';
 import { LocalGroceryStore, HourglassTop, Restaurant, Scale } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { getUid } from './userTokenManager';
 
-const Recipes = ({ uid, search }) => {
+const Recipes = ({ search }) => {
     const navigate = useNavigate();
     const [recipes, setRecipes] = useState([]);
     const [ingredients, setIngredients] = useState([]);
@@ -21,7 +22,7 @@ const Recipes = ({ uid, search }) => {
     async function addToGroceryList (name, calories, image, recipeIngredients, source) {
         try {
             await axios.post('grocery_list', {
-                    uid: uid,
+                    uid: getUid(),
                     name: name,
                     calories: calories,
                     ingredients_array: recipeIngredients,
@@ -36,7 +37,7 @@ const Recipes = ({ uid, search }) => {
     async function getRecipes () {
         const app_id = '59482d1c';
         const app_key = '6708bc487e05e9385e5d27f95ed728f3';
-        const fetchedIngredientsList = await axios.get(`/ingredients/${uid}`);
+        const fetchedIngredientsList = await axios.get(`/ingredients/${getUid()}`);
         const ingredientsList = fetchedIngredientsList.data.map((ingredient) => {
             return ingredient.name 
         });
