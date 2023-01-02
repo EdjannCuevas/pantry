@@ -8,6 +8,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import GroceryList from './GroceryList';
 import SignIn from './auth/SignIn';
 import SignUp from './auth/SignUp';
+import ProtectedRoutes from './ProtectedRoutes';
 
 const theme = createTheme({
   status: {
@@ -35,9 +36,9 @@ function App() {
         <Routes>
           <Route path='/' element={ <SignIn/>}/>
           <Route path='/signup' element={ <SignUp/>}/>
-          <Route path='/home' element={ <UserInput/> }/>
-          <Route path='/recipes' element={ <Recipes search={search}/> }/>
-          <Route path='/lists' element={ <GroceryList/> }/>
+          <Route path='/home' element={ <ProtectedRoutes> <UserInput/> </ProtectedRoutes> }/>
+          <Route path='/recipes' element={ <ProtectedRoutes> <Recipes search={search}/> </ProtectedRoutes> }/>
+          <Route path='/lists' element={ <ProtectedRoutes> <GroceryList/> </ProtectedRoutes> }/>
         </Routes>
       </ThemeProvider>
     </div>

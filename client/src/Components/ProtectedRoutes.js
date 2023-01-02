@@ -4,6 +4,7 @@ import { getUid } from "./userTokenManager";
 
 const ProtectedRoutes = () => {
     const user = getUid();
+    console.log(user)
 
     return (
         user.length > 0 ? <Outlet/> : <Navigate to='/'/>
