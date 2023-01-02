@@ -6,6 +6,7 @@ import { Home, LocalGroceryStoreOutlined, Logout, Search } from '@mui/icons-mate
 import { AppBar, Box, Toolbar, InputBase, Dialog, Button, DialogTitle, DialogActions } from '@mui/material';
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import { setUid } from './userTokenManager';
 
 const Navbar = ({search, setSearch}) => {
     const navigate = useNavigate();
@@ -41,8 +42,9 @@ const Navbar = ({search, setSearch}) => {
         navigate('/');
     };
 
-    const userSignOut = () => {
-        signOut(auth).then(() => {
+    const userSignOut = async () => {
+        await signOut(auth).then(() => {
+            setUid('');
             console.log('sign out was successful')
         }).catch(err => console.log(err));
     };
