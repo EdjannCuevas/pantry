@@ -17,15 +17,20 @@ Pantry inventory and recipe finder full-stack application.
 ![Alt text](readMeDocs/ingredients_lists_page.png)
 
 ## Bugs
-- Buttons not loading the page with the most recent information.
+
 - Checkbox renders all items pre-checked.
-- Link buttons loads the page to the link.
 - Cooking time only translates to minutes.
+- Reloading the oage takes you to the login page.
 
 ## Features
-- Server is not that strict on mispells and spacing of food items.
+
+- Uploading pantry items with a timestamp.
+- Provides many recipes with the items inside your pantry.
+- Automatically shows you the ingredients you will need in a list.
+- Firebase authentication.
 
 ## Installation
 
 - Install the packages with `npm i`
+- npm run build
 - npm start
