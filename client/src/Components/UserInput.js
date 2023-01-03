@@ -42,9 +42,9 @@ const UserInput = () => {
                 <div className='add__button__container'>
                     <Button
                         onClick={(e) => {
+                            onSubmitForm();
                             count++;
                             setChange(count);
-                            onSubmitForm();
                         }}
                         variant='contained'
                         style={{marginRight: '3%'}}
