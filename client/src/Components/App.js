@@ -56,9 +56,9 @@ function App() {
         <Routes>
           <Route path='/' element={ <SignIn/>}/>
           <Route path='/signup' element={ <SignUp/>}/>
-          <Route path='/home' element={ <ProtectedRoutes authUser={authUser}> <UserInput authUser={authUser} /> </ProtectedRoutes> }/>
-          <Route path='/recipes' element={ <ProtectedRoutes authUser={authUser}> <Recipes authUser={authUser} search={search}/> </ProtectedRoutes> }/>
-          <Route path='/lists' element={ <ProtectedRoutes authUser={authUser}> <GroceryList authUser={authUser} /> </ProtectedRoutes> }/>
+          <Route path='/home' element={ <ProtectedRoutes authUser={authUser}> <UserInput/> </ProtectedRoutes> }/>
+          <Route path='/recipes' element={ <ProtectedRoutes authUser={authUser}> <Recipes search={search}/> </ProtectedRoutes> }/>
+          <Route path='/lists' element={ <ProtectedRoutes authUser={authUser}> <GroceryList/> </ProtectedRoutes> }/>
         </Routes>
       </ThemeProvider>
     </div>

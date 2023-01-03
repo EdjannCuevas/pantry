@@ -1,6 +1,5 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { getUid } from "./userTokenManager";
 
 const ProtectedRoutes = ({ authUser, children }) => {
 

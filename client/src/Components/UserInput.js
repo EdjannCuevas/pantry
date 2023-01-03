@@ -7,15 +7,11 @@ import { Button, IconButton, InputLabel, OutlinedInput, Card } from '@mui/materi
 import { PhotoCamera } from '@mui/icons-material';
 import { getUid, setUid } from './userTokenManager';
 
-const UserInput = ({ authUser }) => {
+const UserInput = () => {
     const [name, setName] = useState('');
     const [searchToggle, setSearchToggle] = useState(true);
     let [change, setChange] = useState(0);
     let count = 0;
-
-    useEffect(() => {
-        setUid(authUser.uid)
-    },[])
 
     const onSubmitForm = async () => {
             try {

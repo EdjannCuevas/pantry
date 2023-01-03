@@ -1,10 +1,10 @@
 import '../Styles/Navbar.css'
-import React, { useState, useEffect } from "react";
+import React from "react";
 import stirfry from '../Styles/stirfry.gif';
 import { useNavigate } from 'react-router-dom';
 import { Home, LocalGroceryStoreOutlined, Logout, Search } from '@mui/icons-material';
 import { AppBar, Box, Toolbar, InputBase, Dialog, Button, DialogTitle, DialogActions } from '@mui/material';
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { setUid } from './userTokenManager';
 
@@ -89,7 +89,7 @@ const Navbar = ({authUser, search, setSearch}) => {
                                 sx={{ fontSize: 30}}
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    authUser ? handleClickOpen() : navigate('/');
+                                    handleClickOpen();
                                 }}
                             />
                             <Dialog
