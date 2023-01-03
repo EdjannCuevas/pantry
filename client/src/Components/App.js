@@ -47,7 +47,7 @@ function App() {
     return () => {
         listen();
     }
-  }, [])
+  }, []);
   
   return (
     <div className="App">

@@ -1,11 +1,11 @@
 import '../Styles/UserInput.css'
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Pantry from './Pantry';
 import Ingredients from './Ingredients';
 import { Button, IconButton, InputLabel, OutlinedInput, Card } from '@mui/material';
 import { PhotoCamera } from '@mui/icons-material';
-import { getUid, setUid } from './userTokenManager';
+import { getUid } from './userTokenManager';
 
 const UserInput = () => {
     const [name, setName] = useState('');
