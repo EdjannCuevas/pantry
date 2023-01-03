@@ -1,17 +1,21 @@
 import '../Styles/UserInput.css'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Pantry from './Pantry';
 import Ingredients from './Ingredients';
 import { Button, IconButton, InputLabel, OutlinedInput, Card } from '@mui/material';
 import { PhotoCamera } from '@mui/icons-material';
-import { getUid } from './userTokenManager';
+import { getUid, setUid } from './userTokenManager';
 
-const UserInput = () => {
+const UserInput = ({ authUser }) => {
     const [name, setName] = useState('');
     const [searchToggle, setSearchToggle] = useState(true);
     let [change, setChange] = useState(0);
     let count = 0;
+
+    useEffect(() => {
+        setUid(authUser.uid)
+    },[])
 
     const onSubmitForm = async () => {
             try {

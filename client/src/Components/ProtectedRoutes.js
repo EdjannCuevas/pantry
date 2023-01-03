@@ -1,13 +1,11 @@
 import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { getUid } from "./userTokenManager";
 
-const ProtectedRoutes = ({children}) => {
-    const user = getUid();
-    console.log(user)
+const ProtectedRoutes = ({ authUser, children }) => {
 
     return (
-        user.length > 0 ? children : <Navigate to='/' replace />
+        authUser ? children : <Navigate to='/' replace />
     );
 }
 

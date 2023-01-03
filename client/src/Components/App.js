@@ -1,5 +1,5 @@
 import '../Styles/App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from './Navbar';
 import UserInput from './UserInput';
 import Recipes from './Recipes.js';
@@ -9,6 +9,9 @@ import GroceryList from './GroceryList';
 import SignIn from './auth/SignIn';
 import SignUp from './auth/SignUp';
 import ProtectedRoutes from './ProtectedRoutes';
+import { auth } from '../firebase';
+import { setUid } from './userTokenManager';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const theme = createTheme({
   status: {
@@ -27,18 +30,35 @@ const theme = createTheme({
 });
 
 function App() {
+  const [authUser, setAuthUser] = useState(null);
   const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    const listen = onAuthStateChanged(auth, (user) => {
+        if (user) {
+            setUid(user.uid);
+            setAuthUser(user);
+        }
+        else {
+            setAuthUser(null);
+        }
+
+    });
+    return () => {
+        listen();
+    }
+  }, [])
   
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <NavBar search={search} setSearch={setSearch}/>
+        <NavBar authUser={authUser} search={search} setSearch={setSearch}/>
         <Routes>
           <Route path='/' element={ <SignIn/>}/>
           <Route path='/signup' element={ <SignUp/>}/>
-          <Route path='/home' element={ <ProtectedRoutes> <UserInput/> </ProtectedRoutes> }/>
-          <Route path='/recipes' element={ <ProtectedRoutes> <Recipes search={search}/> </ProtectedRoutes> }/>
-          <Route path='/lists' element={ <ProtectedRoutes> <GroceryList/> </ProtectedRoutes> }/>
+          <Route path='/home' element={ <ProtectedRoutes authUser={authUser}> <UserInput authUser={authUser} /> </ProtectedRoutes> }/>
+          <Route path='/recipes' element={ <ProtectedRoutes authUser={authUser}> <Recipes authUser={authUser} search={search}/> </ProtectedRoutes> }/>
+          <Route path='/lists' element={ <ProtectedRoutes authUser={authUser}> <GroceryList authUser={authUser} /> </ProtectedRoutes> }/>
         </Routes>
       </ThemeProvider>
     </div>
