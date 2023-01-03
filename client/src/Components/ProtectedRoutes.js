@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 const ProtectedRoutes = ({ authUser, children }) => {
 
     return (
-        authUser ? children : <Navigate to='/' replace />
+        authUser ? children : <Navigate to='/login' replace />
     );
 }
 

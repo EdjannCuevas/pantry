@@ -123,7 +123,7 @@ const Recipes = ({ search }) => {
                 component='label'
                 onClick={(e) =>{
                     e.preventDefault();
-                    navigate('/home');
+                    navigate('/');
                 }
             }>BACK</Button>
             {ingredients}

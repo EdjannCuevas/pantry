@@ -14,7 +14,7 @@ function setUpServer () {
         res.sendFile(path.resolve(__dirname,'../client/build/index.html'));
     });
 
-    app.get('/home', (req,res) =>{
+    app.get('/login', (req,res) =>{
         res.sendFile(path.resolve(__dirname,'../client/build/index.html'));
     });
 

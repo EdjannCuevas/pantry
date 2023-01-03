@@ -54,9 +54,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <NavBar authUser={authUser} search={search} setSearch={setSearch}/>
         <Routes>
-          <Route path='/' element={ <SignIn/>}/>
+          <Route path='/login' element={ <SignIn/>}/>
           <Route path='/signup' element={ <SignUp/>}/>
-          <Route path='/home' element={ <ProtectedRoutes authUser={authUser}> <UserInput/> </ProtectedRoutes> }/>
+          <Route path='/' element={ <ProtectedRoutes authUser={authUser}> <UserInput/> </ProtectedRoutes> }/>
           <Route path='/recipes' element={ <ProtectedRoutes authUser={authUser}> <Recipes search={search}/> </ProtectedRoutes> }/>
           <Route path='/lists' element={ <ProtectedRoutes authUser={authUser}> <GroceryList/> </ProtectedRoutes> }/>
         </Routes>

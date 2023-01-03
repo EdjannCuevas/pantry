@@ -47,7 +47,7 @@ const Navbar = ({authUser, search, setSearch}) => {
                             <Home
                                 style={{cursor:'pointer'}}
                                 onClick={() => {
-                                    navigate('/home');
+                                    navigate('/');
                                 }}
                                 sx={{ fontSize: 30, marginRight: 2}}
                             />
@@ -63,7 +63,7 @@ const Navbar = ({authUser, search, setSearch}) => {
                                 style={{cursor:'pointer'}}
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    navigate('/home');
+                                    navigate('/');
                                 }
                                 }>PANTRY
                             </h1>
@@ -118,7 +118,7 @@ const Navbar = ({authUser, search, setSearch}) => {
                             style={{cursor:'pointer'}}
                             onClick={(e) => {
                                 e.preventDefault();
-                                navigate('/home');
+                                navigate('/');
                             }
                             }>PANTRY
                         </h1>

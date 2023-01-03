@@ -18,7 +18,7 @@ const SignIn = () => {
         .then((userCredentials) => {
             setUid(userCredentials.user.uid);
             setIsNotUser(false);
-            navigate('/home');
+            navigate('/');
         })
         .catch((err) => {
             setIsNotUser(true);
