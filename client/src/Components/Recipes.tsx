@@ -5,8 +5,13 @@ import { Button, Card, Table, TableBody, TableCell, TableContainer, TableRow, Pa
 import { LocalGroceryStore, HourglassTop, Restaurant, Scale } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { getUid } from './userTokenManager';
+import { IngredientsObj, ResponseObj } from '../globals';
 
-const Recipes = ({ search }) => {
+interface RecipesProps {
+    search: string;
+}
+
+const Recipes: React.FC<RecipesProps> = ({ search }) => {
     const navigate = useNavigate();
     const [recipes, setRecipes] = useState([]);
     const [ingredients, setIngredients] = useState([]);
@@ -15,11 +20,11 @@ const Recipes = ({ search }) => {
         getRecipes();
     },[]);
 
-    const openInNewTab = url => {
+    const openInNewTab = (url: string) => {
         window.open(url, '_blank', 'noopener,noreferrer');
     };
 
-    async function addToGroceryList (name, calories, image, recipeIngredients, source) {
+    async function addToGroceryList (name: string, calories: number, image: string, recipeIngredients: string[], source: string) {
         try {
             await axios.post('grocery_list', {
                     uid: getUid(),
@@ -38,10 +43,10 @@ const Recipes = ({ search }) => {
         const app_id = '59482d1c';
         const app_key = '6708bc487e05e9385e5d27f95ed728f3';
         const fetchedIngredientsList = await axios.get(`/ingredients/${getUid()}`);
-        const ingredientsList = fetchedIngredientsList.data.map((ingredient) => {
+        const ingredientsList = fetchedIngredientsList.data.map((ingredient: IngredientsObj) => {
             return ingredient.name 
         });
-        setIngredients(ingredientsList.map((ingredient) => {
+        setIngredients(ingredientsList.map((ingredient: string) => {
             return <Button
                     disabled
                     color='success'
@@ -52,7 +57,7 @@ const Recipes = ({ search }) => {
 
         const spacedIngredients = (search ? search : ingredientsList).join('%20and%20').toLowerCase();
         const fetchedRecipeList = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${spacedIngredients}&app_id=${app_id}&app_key=${app_key}`);
-        const recipeList = fetchedRecipeList.data.hits.map((item) => {
+        const recipeList = fetchedRecipeList.data.hits.map((item: ResponseObj) => {
             const recipe = item.recipe;
 
             const name = recipe.label;
@@ -96,7 +101,6 @@ const Recipes = ({ search }) => {
                                 >Recipe
                             </Button>
                             <IconButton
-                                variant='contained'
                                 color="primary"
                                 aria-label="add to shopping cart"
                                 onClick={() => {
@@ -129,7 +133,7 @@ const Recipes = ({ search }) => {
             {ingredients}
         </div>
         <div className='recipes__container' >
-            <TableContainer elevation='5' sx={{height:'100%'}} component={Paper}>
+            <TableContainer elevation={5} sx={{height:'100%'}} component={Paper}>
                 <Table>
                     <TableBody>
                         { recipes }

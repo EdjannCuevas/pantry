@@ -12,8 +12,7 @@ const SignIn = () => {
     const [password, setPassword] = useState('');
     const [isNotUser, setIsNotUser] = useState(false);
 
-    const signIn = (e) => {
-        e.preventDefault();
+    const signIn = () => {
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
             setUid(userCredentials.user.uid);
@@ -28,7 +27,7 @@ const SignIn = () => {
 
     return (
         <div className="sign__in__container">
-            <Card raised='true' className='sign__in__form'>
+            <Card raised={true} className='sign__in__form'>
                 <CardHeader title='Log in'/>
                 {
                     (isNotUser) ? (

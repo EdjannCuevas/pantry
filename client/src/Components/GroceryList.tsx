@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Button, Paper, Card, List, ListItem, ListItemIcon, ListItemText, Table, TableContainer, TableBody, TableRow, ListItemButton } from '@mui/material';
 import { CheckBox } from '@mui/icons-material';
 import { getUid } from './userTokenManager';
+import { ListObj } from '../globals';
 
 const GroceryList = () => {
     const [groceryList, setGroceryList] = useState([]);
@@ -14,7 +15,7 @@ const GroceryList = () => {
         getGroceryList();
     },[toggle]);
 
-    const handleChange = (value) => {
+    const handleChange = (value: number) => {
         const currentIndex = checked.indexOf(value);
         const newChecked = [...checked];
 
@@ -27,11 +28,11 @@ const GroceryList = () => {
         console.log(newChecked)
     };
 
-    const openInNewTab = url => {
+    const openInNewTab = (url: string) => {
         window.open(url, '_blank', 'noopener,noreferrer');
     };
 
-    async function removeGroceryList (id) {
+    async function removeGroceryList (id: string) {
         try {
             await axios.delete(`/grocery_list/${id}`)
         } catch (error) {
@@ -42,13 +43,13 @@ const GroceryList = () => {
     
     async function getGroceryList () {
         const fetchedList = await axios.get(`/grocery_list/${getUid()}`);
-        const list = fetchedList.data.map((list) => {
+        const list = fetchedList.data.map((list: ListObj) => {
             const id = list.id;
             const name = list.name;
             const ingredientsArray = list.ingredients_array;
             const recipeSource = list.recipe_source;
             const imageSource = list.image_source;
-            const ingredientsCheckList = ingredientsArray.map((ingredient) => {
+            const ingredientsCheckList = ingredientsArray.map((ingredient: string) => {
                 const value = ingredientsArray.indexOf(ingredient)
                 return <ListItem
                         sx={{maxHeight: '90%'}}
@@ -60,11 +61,6 @@ const GroceryList = () => {
                             }}>
                                 <ListItemIcon>
                                     <CheckBox
-                                        disableRipple
-                                        edge="start"
-                                        tabIndex={-1}
-                                        checked={checked.indexOf(value) !== -1}
-                                        inputProps={{ 'aria-label': 'controlled' }}
                                         color="primary"
                                     />
                                 </ListItemIcon>
@@ -117,7 +113,7 @@ const GroceryList = () => {
 
     return <div className='page__container'>
         <TableContainer
-            elevation='5'
+            elevation={5}
             sx={{width: '98%', height: '97%'}}
             component={Paper}
         >

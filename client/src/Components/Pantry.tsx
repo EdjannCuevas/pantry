@@ -5,9 +5,14 @@ import moment from 'moment';
 import { Button, Table, TableBody, TableCell, TableContainer,TableHead, TableRow, Paper } from '@mui/material';
 import { AddCircle, Delete } from '@mui/icons-material';
 import { getUid } from './userTokenManager';
+import { IngredientsObj } from '../globals';
 
+interface PantryProps {
+    change: number;
+    setChange: (arg0: number) => void;
+};
 
-const Pantry = ({ change, setChange }) => {
+const Pantry: React.FC<PantryProps> = ({ change, setChange }) => {
     const [pantryList, setPantryList] = useState([]);
     let count = 0;
 
@@ -17,7 +22,7 @@ const Pantry = ({ change, setChange }) => {
 
     const getPantry = async () => {
         const fetchPantryList = await axios.get(`/pantry/${getUid()}`);
-        const list = fetchPantryList.data.map((item) => {
+        const list = fetchPantryList.data.map((item: IngredientsObj) => {
             const uid = item.uid;
             const id = item.id;
             const name = item.name;
@@ -52,12 +57,12 @@ const Pantry = ({ change, setChange }) => {
         });
         setPantryList(list);
     };
-    function timeDuration (time) {
+    function timeDuration (time: Date) {
         const duration = moment(time).fromNow();
         return duration;
     };
     
-    async function deleteItem (id) {
+    async function deleteItem (id: string) {
         try {
             await axios.delete(`pantry/${id}`);
         } catch (error) {
@@ -67,7 +72,7 @@ const Pantry = ({ change, setChange }) => {
         setChange(count);
     };
 
-    async function addToIngredients (uid, id, name, time) {
+    async function addToIngredients (uid: string, id: string, name: string, time: Date) {
         try {
             await axios.post('/ingredients', { uid: uid, pantry_id: id, name : name, timestamp : time });
         } catch (error) {
@@ -79,7 +84,7 @@ const Pantry = ({ change, setChange }) => {
 
     return <div className='pantry__container'>
         <TableContainer
-            elevation='5'
+            elevation={5}
             sx={{
                 height:'100%',
                 width: '100%',

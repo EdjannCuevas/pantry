@@ -24,11 +24,10 @@ const UserInput = () => {
 
     return <div className='home__top'>
         <div className='user__input__container'>
-            <Card raised='true' className='input__and__buttons__container'>
+            <Card raised={true} className='input__and__buttons__container'>
                 <div className='input__container'>
                     <InputLabel htmlFor="my-input">Add items to your Pantry</InputLabel>
                     <OutlinedInput
-                        variant="outlined"
                         onChange={(e) => {
                             e.preventDefault();
                             setName(e.target.value);
@@ -71,8 +70,6 @@ const UserInput = () => {
             <Ingredients
                 setChange = { setChange }
                 change = { change }
-                setSearchToggle = { setSearchToggle }
-                searchToggle = { searchToggle }
             />
         </div>
         <Pantry setChange = { setChange } change = { change }/>

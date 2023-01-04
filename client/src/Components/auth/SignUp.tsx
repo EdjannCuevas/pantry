@@ -12,8 +12,7 @@ const SignUp = () => {
     const [isValid, setIsValid] = useState(true);
     const navigate = useNavigate();
 
-    const signUp = (e) => {
-        e.preventDefault();
+    const signUp = () => {
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
             setIsValid(true);
@@ -28,7 +27,7 @@ const SignUp = () => {
 
     return (
         <div className="sign__in__container">
-            <Card raised='true' className="sign__in__form">
+            <Card raised={true} className="sign__in__form">
                 <CardHeader title='Sign up'/>
                 {
                     (isValid && isRegistered) ? (

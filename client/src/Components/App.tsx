@@ -2,7 +2,7 @@ import '../Styles/App.css';
 import React, { useEffect, useState } from 'react';
 import NavBar from './Navbar';
 import UserInput from './UserInput';
-import Recipes from './Recipes.js';
+import Recipes from './Recipes';
 import { Routes, Route } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import GroceryList from './GroceryList';
@@ -12,29 +12,22 @@ import ProtectedRoutes from './ProtectedRoutes';
 import { auth } from '../firebase';
 import { setUid } from './userTokenManager';
 import { onAuthStateChanged } from 'firebase/auth';
+import { User } from '../globals';
 
 const theme = createTheme({
-  status: {
-    danger: '#e53e3e',
-  },
   palette: {
     primary: {
       main: '#3FC060',
-      darker: '#f50057',
-    },
-    neutral: {
-      main: '#f50057',
-      contrastText: '#f50057',
     },
   },
 });
 
 function App() {
-  const [authUser, setAuthUser] = useState(null);
+  const [authUser, setAuthUser] = useState<User | null>(null);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    const listen = onAuthStateChanged(auth, (user) => {
+    const listen = onAuthStateChanged(auth, (user: User | null) => {
         if (user) {
             setUid(user.uid);
             setAuthUser(user);

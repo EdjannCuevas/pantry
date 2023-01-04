@@ -7,8 +7,15 @@ import { AppBar, Box, Toolbar, InputBase, Dialog, Button, DialogTitle, DialogAct
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { setUid } from './userTokenManager';
+import { User } from '../globals';
 
-const Navbar = ({authUser, search, setSearch}) => {
+interface NavBarProps {
+    authUser: User | null;
+    search: string;
+    setSearch: (args0: string) => void;
+}
+
+const Navbar: React.FC<NavBarProps> = ({authUser, search, setSearch}) => {
     const navigate = useNavigate();
     const [openDialog, setOpenDialog] = React.useState(false);
 
@@ -38,7 +45,7 @@ const Navbar = ({authUser, search, setSearch}) => {
     };
 
     return <Box sx={{flexGrow: 1}}>
-        <AppBar color='primary' className='navBar' elevation= '2'>
+        <AppBar color='primary' className='navBar' elevation={2}>
             <Toolbar sx={{width: '100%'}}>
                 {
                     (authUser) ? (
@@ -77,12 +84,10 @@ const Navbar = ({authUser, search, setSearch}) => {
                                 onClick={handleInputChange}
                             />
                             <InputBase
-                                variant='filled'
                                 onChange={(e) => setSearch(e.target.value)}
                                 placeholder="Search…"
                                 inputProps={{ 'aria-label': 'search' }}
-                            >
-                            </InputBase>
+                            />
                             <Logout 
                                 style={{cursor:'pointer'}}
                                 color="inherit"
@@ -102,7 +107,7 @@ const Navbar = ({authUser, search, setSearch}) => {
                                     {`Are you sure you want to log out, ${authUser ? authUser.email : '🔥'}?`}
                                 </DialogTitle>
                                 <DialogActions>
-                                    <Button variant='standard' onClick={handleClose}>cancel</Button>
+                                    <Button variant='text' onClick={handleClose}>cancel</Button>
                                     <Button variant='contained' onClick={handleLogOut} autoFocus>
                                         Logout
                                     </Button>

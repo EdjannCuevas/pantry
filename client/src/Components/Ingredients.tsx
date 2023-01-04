@@ -4,8 +4,14 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card } from '@mui/material';
 import { getUid } from './userTokenManager';
+import { IngredientsObj } from '../globals';
 
-const Ingredients = ({ change, setChange }) => {
+interface IngredientsProps {
+    change: number;
+    setChange: (arg0: number) => void;
+};
+
+const Ingredients: React.FC<IngredientsProps> = ({ change, setChange }) => {
     const [ingredientsList, setIngredientsList] = useState([]);
     const navigate = useNavigate();
     let count = 0;
@@ -14,7 +20,7 @@ const Ingredients = ({ change, setChange }) => {
         getIngredients();
     },[change]);
 
-    async function deleteIngredient (id) {
+    async function deleteIngredient (id: string) {
         try {
             await axios.delete(`ingredients/${id}`);
         } catch (error) {
@@ -24,7 +30,7 @@ const Ingredients = ({ change, setChange }) => {
         setChange(count);
     };
 
-    async function addToPantry (uid, id, name, time) {
+    async function addToPantry (uid: string, id: string, name: string, time: string) {
         try {
             await axios.post('/pantry', { uid: uid, id : id, name : name, timestamp : time });
         } catch (error) {
@@ -37,7 +43,7 @@ const Ingredients = ({ change, setChange }) => {
     async function getIngredients () {
         const fetchedIngredients = await axios.get(`/ingredients/${getUid()}`);
 
-        const list = fetchedIngredients.data.map((ingredient) => {
+        const list = fetchedIngredients.data.map((ingredient: IngredientsObj) => {
             const uid = ingredient.uid;
             const id = ingredient.pantry_id;
             const name = ingredient.name;
