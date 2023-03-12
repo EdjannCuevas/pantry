@@ -21,9 +21,7 @@ module.exports = {
         client: 'pg',
         connection: process.env.DATABASE_URL,
         searchPath: 'public',
-        ssl: {
-            rejectUnauthorized: false
-        },
+        ssl: true,
         migrations: {
             tableName: 'knex_migrations',
             directory: __dirname + '/db/migrations'
