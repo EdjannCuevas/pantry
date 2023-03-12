@@ -19,7 +19,7 @@ module.exports = {
     },
     production: {
         client: 'pg',
-            connection: process.env.DB_URL_PROD,
+            connection: process.env.DATABASE_URL,
                 searchPath: 'public',
                 pool: {
                     min: 2,
