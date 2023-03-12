@@ -19,7 +19,7 @@ module.exports = {
     },
     production: {
         client: 'pg',
-        connection: process.env.DATABASE_URL,
+        connection: process.env.DATABASE_URL + '?sslmode=require',
         searchPath: 'public',
         ssl: true,
         migrations: {
