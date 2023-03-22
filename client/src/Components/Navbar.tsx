@@ -51,23 +51,9 @@ const Navbar: React.FC<NavBarProps> = ({authUser, search, setSearch}) => {
                     (authUser) ? (
                         <Toolbar sx={{width: '100%'}}>
                         <div className='button__container'>
-                            <Home
-                                style={{cursor:'pointer'}}
-                                onClick={() => {
-                                    navigate('/');
-                                }}
-                                sx={{ fontSize: 30, marginRight: 2}}
-                            />
-                            <LocalGroceryStoreOutlined
-                                style={{cursor:'pointer'}}
-                                onClick={() => {
-                                    navigate('/lists');
-                                }}
-                                sx={{ fontSize: 30 }}
-                            />
                             <h1
                                 id='app__name'
-                                style={{cursor:'pointer'}}
+                                style={{cursor:'pointer', marginLeft:'5px'}}
                                 onClick={(e) => {
                                     e.preventDefault();
                                     navigate('/');
@@ -78,9 +64,8 @@ const Navbar: React.FC<NavBarProps> = ({authUser, search, setSearch}) => {
 
                         </div>
                         <div className='search__logout'>
-
                             <Search
-                                style={{cursor:'pointer'}}
+                                style={{cursor:'pointer', marginLeft:'10px'}}
                                 onClick={handleInputChange}
                             />
                             <InputBase
@@ -88,8 +73,15 @@ const Navbar: React.FC<NavBarProps> = ({authUser, search, setSearch}) => {
                                 placeholder="Search…"
                                 inputProps={{ 'aria-label': 'search' }}
                             />
+                            <LocalGroceryStoreOutlined
+                                style={{cursor:'pointer', marginLeft:'15px'}}
+                                onClick={() => {
+                                    navigate('/lists');
+                                }}
+                                sx={{ fontSize: 30 }}
+                            />
                             <Logout 
-                                style={{cursor:'pointer'}}
+                                style={{cursor:'pointer', marginLeft:'15px'}}
                                 color="inherit"
                                 sx={{ fontSize: 30}}
                                 onClick={(e) => {
@@ -120,7 +112,7 @@ const Navbar: React.FC<NavBarProps> = ({authUser, search, setSearch}) => {
                         <Toolbar sx={{width: '100%', justifyContent: 'center'}}>
                         <h1
                             id='app__name'
-                            style={{cursor:'pointer'}}
+                            style={{cursor:'pointer', marginLeft:'5px'}}
                             onClick={(e) => {
                                 e.preventDefault();
                                 navigate('/');
