@@ -49,7 +49,8 @@ const Ingredients: React.FC<IngredientsProps> = ({ change, setChange }) => {
             const name = ingredient.name;
             const time = ingredient.timestamp;
 
-            return <Button
+            return <div style={{marginLeft: '5px'}}>
+                <Button
                     color='success'
                     variant='contained'
                     size='small'
@@ -58,15 +59,14 @@ const Ingredients: React.FC<IngredientsProps> = ({ change, setChange }) => {
                         deleteIngredient(id);
                         }
                 }>x { name }</Button>
+            </div>
         });
         setIngredientsList(list);
     };
     return <Card elevation={5} className='ingredients__container'>
         <h3>INGREDIENTS</h3>
         <div className='ingredients__list__container'>
-            <div>
             { ingredientsList }
-            </div>
         </div>
         {(ingredientsList.length > 0) ? (
             <div className='search__button__container' >

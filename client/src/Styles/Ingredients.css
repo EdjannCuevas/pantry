@@ -9,6 +9,8 @@
 }
 
 .ingredients__list__container {
+    display: flex;
+    flex-direction: row;
     border: 1px solid;
     padding: 10px;
     height: 100%;
