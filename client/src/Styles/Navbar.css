@@ -27,14 +27,14 @@
 }
 
 .button__container {
-    width: 80%;
+    width: 50%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
 .search__logout {
-    width: 20%;
+    width: 50%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
