@@ -53,6 +53,23 @@ const Pantry: React.FC<PantryProps> = ({ change, setChange }) => {
             });
             setPantryList(list);
         };
+        async function deleteItem (id: string) {
+            try {
+                await axios.delete(`pantry/${id}`);
+            } catch (error) {
+                console.log(error);
+            }
+            setChange(!change);
+        };
+    
+        async function addToIngredients (uid: string, id: string, name: string, time: Date) {
+            try {
+                await axios.post('/ingredients', { uid: uid, pantry_id: id, name : name, timestamp : time });
+            } catch (error) {
+                console.log(error)
+            };
+            setChange(!change);
+        };
         getPantry();
     },[change]);
 
@@ -61,23 +78,6 @@ const Pantry: React.FC<PantryProps> = ({ change, setChange }) => {
         return duration;
     };
     
-    async function deleteItem (id: string) {
-        try {
-            await axios.delete(`pantry/${id}`);
-        } catch (error) {
-            console.log(error);
-        }
-        setChange(!change);
-    };
-
-    async function addToIngredients (uid: string, id: string, name: string, time: Date) {
-        try {
-            await axios.post('/ingredients', { uid: uid, pantry_id: id, name : name, timestamp : time });
-        } catch (error) {
-            console.log(error)
-        };
-        setChange(!change);
-    };
 
     return <div className='pantry__container'>
         <TableContainer
