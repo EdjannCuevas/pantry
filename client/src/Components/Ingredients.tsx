@@ -17,6 +17,29 @@ const Ingredients: React.FC<IngredientsProps> = ({ change, setChange }) => {
     let count = 0;
 
     useEffect(() => {
+        async function getIngredients () {
+            const fetchedIngredients = await axios.get(`/ingredients/${getUid()}`);
+    
+            const list = fetchedIngredients.data.map((ingredient: IngredientsObj) => {
+                const uid = ingredient.uid;
+                const id = ingredient.pantry_id;
+                const name = ingredient.name;
+                const time = ingredient.timestamp;
+    
+                return <div style={{marginLeft: '5px'}}>
+                    <Button
+                        color='success'
+                        variant='contained'
+                        size='small'
+                        onClick={() => {
+                            addToPantry(uid, id, name, time);
+                            deleteIngredient(id);
+                            }
+                    }>x { name }</Button>
+                </div>
+            });
+            setIngredientsList(list);
+        };
         getIngredients();
     },[change]);
 
@@ -40,29 +63,6 @@ const Ingredients: React.FC<IngredientsProps> = ({ change, setChange }) => {
         setChange(count);
     };
 
-    async function getIngredients () {
-        const fetchedIngredients = await axios.get(`/ingredients/${getUid()}`);
-
-        const list = fetchedIngredients.data.map((ingredient: IngredientsObj) => {
-            const uid = ingredient.uid;
-            const id = ingredient.pantry_id;
-            const name = ingredient.name;
-            const time = ingredient.timestamp;
-
-            return <div style={{marginLeft: '5px'}}>
-                <Button
-                    color='success'
-                    variant='contained'
-                    size='small'
-                    onClick={() => {
-                        addToPantry(uid, id, name, time);
-                        deleteIngredient(id);
-                        }
-                }>x { name }</Button>
-            </div>
-        });
-        setIngredientsList(list);
-    };
     return <Card elevation={5} className='ingredients__container'>
         <h3>INGREDIENTS</h3>
         <div className='ingredients__list__container'>
