@@ -16,27 +16,13 @@
     align-items: center;
 }
 
-.raw__data__container {
-    width: 70%;
-}
-
 .recipes__container {   
     width: 90%;
     height: 90%;
 }
-.recipe__data__container {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
 
-.food__image {
-    height: 100%;
-    width: 20%;
-}
-
-.recipe__info {
+.recipe__container {
+    border: solid black;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -44,41 +30,65 @@
     height: 100%;
 }
 
-.raw__data {
+.food__image__container {
+    width: 20%;
+}
+
+.food__image {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+}
+
+.raw__data__container {
     display: flex;
     flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 68%;
+}
+
+.recipe__name {
+    width: 98%;
+    height: 30px;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.ingredients__container {
+    padding: 20px;
+    overflow:hidden;
+    height: 50%;
+    width: 97%;
+    max-height: 115px;
 }
 
 .icons__container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.recipe__buttons__container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    width: 20%; 
-}
-
-.recipe__name {
-    font-weight: bolder;
-    font-size: larger;
+    justify-content: space-around;
+    width: 97%;
 }
 
 .icon__data {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 5px;
 }
 
+.recipe__buttons__container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 10%; 
+}
 
 .view__button {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+
+
