@@ -1,6 +1,15 @@
+.home__top {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 5%;
+}
 .user__input__container {
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     width: 90%;
     height: 30%;
 }
@@ -13,19 +22,10 @@
     height: auto;
 }
 
-.home__top {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    padding-top: 5%;
-}
 
 .input__and__buttons__container {
     padding: 2%;
-    width: 40%;
+    width: 38%;
     height: 100%;
     display: flex;
     flex-direction: column;

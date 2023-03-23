@@ -9,7 +9,7 @@ import { getUid } from './userTokenManager';
 
 const UserInput = () => {
     const [name, setName] = useState('');
-    const [searchToggle, setSearchToggle] = useState(true);
+    // const [searchToggle, setSearchToggle] = useState(true);
     let [change, setChange] = useState(0);
     let count = 0;
 

@@ -40,30 +40,34 @@ const Ingredients: React.FC<IngredientsProps> = ({ change, setChange }) => {
             });
             setIngredientsList(list);
         };
+        async function deleteIngredient (id: string) {
+            try {
+                await axios.delete(`ingredients/${id}`);
+            } catch (error) {
+                console.log(error);
+            }
+            count++;
+            setChange(count);
+        };
+        async function addToPantry (uid: string, id: string, name: string, time: string) {
+            try {
+                await axios.post('/pantry', { uid: uid, id : id, name : name, timestamp : time });
+            } catch (error) {
+                console.log(error)
+            };
+            count++;
+            setChange(count);
+        };
         getIngredients();
     },[change]);
 
-    async function deleteIngredient (id: string) {
-        try {
-            await axios.delete(`ingredients/${id}`);
-        } catch (error) {
-            console.log(error);
-        }
-        count++;
-        setChange(count);
-    };
 
-    async function addToPantry (uid: string, id: string, name: string, time: string) {
-        try {
-            await axios.post('/pantry', { uid: uid, id : id, name : name, timestamp : time });
-        } catch (error) {
-            console.log(error)
-        };
-        count++;
-        setChange(count);
-    };
 
-    return <Card elevation={5} className='ingredients__container'>
+    return <Card
+    elevation={5}
+    className='ingredients__container'
+    style={{width: '70%', height: '100%'}}
+    >
         <h3>INGREDIENTS</h3>
         <div className='ingredients__list__container'>
             { ingredientsList }

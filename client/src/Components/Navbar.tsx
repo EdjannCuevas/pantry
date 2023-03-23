@@ -2,7 +2,7 @@ import '../Styles/Navbar.css'
 import React from "react";
 import stirfry from '../Styles/stirfry.gif';
 import { useNavigate } from 'react-router-dom';
-import { Home, LocalGroceryStoreOutlined, Logout, Search } from '@mui/icons-material';
+import { LocalGroceryStoreOutlined, Logout, Search } from '@mui/icons-material';
 import { AppBar, Box, Toolbar, InputBase, Dialog, Button, DialogTitle, DialogActions } from '@mui/material';
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";

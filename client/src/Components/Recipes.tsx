@@ -12,9 +12,9 @@ interface RecipesProps {
 }
 
 const Recipes: React.FC<RecipesProps> = ({ search }) => {
-    const navigate = useNavigate();
     const [recipes, setRecipes] = useState([]);
     const [ingredients, setIngredients] = useState([]);
+    const navigate = useNavigate();
     
     useEffect(() => {
         async function getRecipes () {
@@ -56,7 +56,7 @@ const Recipes: React.FC<RecipesProps> = ({ search }) => {
                             </div>
                             <div className='raw__data__container'>
                                 <h2 className='recipe__name'>{ name }</h2>
-                                <div className='ingredients__container'>
+                                <div className='ingredientsList__container'>
                                     <p>
                                         <b>Ingredients:</b>
                                         { recipeIngredients.join(', ') }
