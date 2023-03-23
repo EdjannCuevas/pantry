@@ -9,7 +9,7 @@ import { ListObj } from '../globals';
 const GroceryList = () => {
     const [groceryList, setGroceryList] = useState([]);
     const [checked, setChecked] = useState([0]);
-    let [toggle, setToggle] = useState(0)
+    let [toggle, setToggle] = useState(true)
     
     useEffect(() => {        
         async function getGroceryList () {
@@ -80,35 +80,32 @@ const GroceryList = () => {
             });
             setGroceryList(list);
         };
+        const handleChange = (value: number) => {
+            const currentIndex = checked.indexOf(value);
+            const newChecked = [...checked];
+            
+            if (currentIndex === -1) {
+                newChecked.push(value);
+            } else {
+                newChecked.splice(currentIndex, 1);
+            }
+            setChecked(newChecked);
+            console.log(newChecked)
+        };
+        async function removeGroceryList (id: string) {
+            try {
+                await axios.delete(`/grocery_list/${id}`)
+            } catch (error) {
+                console.log(error);
+            };
+            setToggle(!toggle);
+        };
         getGroceryList();
     },[toggle]);
-
-    const handleChange = (value: number) => {
-        const currentIndex = checked.indexOf(value);
-        const newChecked = [...checked];
-
-        if (currentIndex === -1) {
-        newChecked.push(value);
-        } else {
-        newChecked.splice(currentIndex, 1);
-        }
-        setChecked(newChecked);
-        console.log(newChecked)
-    };
 
     const openInNewTab = (url: string) => {
         window.open(url, '_blank', 'noopener,noreferrer');
     };
-
-    async function removeGroceryList (id: string) {
-        try {
-            await axios.delete(`/grocery_list/${id}`)
-        } catch (error) {
-            console.log(error);
-        };
-        setToggle(toggle++);
-    };
-
 
     return <div className='page__container'>
         <TableContainer

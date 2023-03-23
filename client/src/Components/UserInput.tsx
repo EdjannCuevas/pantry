@@ -10,8 +10,7 @@ import { getUid } from './userTokenManager';
 const UserInput = () => {
     const [name, setName] = useState('');
     // const [searchToggle, setSearchToggle] = useState(true);
-    let [change, setChange] = useState(0);
-    let count = 0;
+    let [change, setChange] = useState(true);
 
     const onSubmitForm = async () => {
             try {
@@ -42,8 +41,7 @@ const UserInput = () => {
                     <Button
                         onClick={(e) => {
                             onSubmitForm();
-                            count++;
-                            setChange(count);
+                            setChange(!change);
                         }}
                         variant='contained'
                         style={{marginRight: '3%'}}

@@ -7,14 +7,13 @@ import { getUid } from './userTokenManager';
 import { IngredientsObj } from '../globals';
 
 interface IngredientsProps {
-    change: number;
-    setChange: (arg0: number) => void;
+    change: boolean;
+    setChange: (arg0: boolean) => void;
 };
 
 const Ingredients: React.FC<IngredientsProps> = ({ change, setChange }) => {
     const [ingredientsList, setIngredientsList] = useState([]);
     const navigate = useNavigate();
-    let count = 0;
 
     useEffect(() => {
         async function getIngredients () {
@@ -46,8 +45,7 @@ const Ingredients: React.FC<IngredientsProps> = ({ change, setChange }) => {
             } catch (error) {
                 console.log(error);
             }
-            count++;
-            setChange(count);
+            setChange(!change);
         };
         async function addToPantry (uid: string, id: string, name: string, time: string) {
             try {
@@ -55,8 +53,7 @@ const Ingredients: React.FC<IngredientsProps> = ({ change, setChange }) => {
             } catch (error) {
                 console.log(error)
             };
-            count++;
-            setChange(count);
+            setChange(!change);
         };
         getIngredients();
     },[change]);

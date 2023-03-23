@@ -8,13 +8,12 @@ import { getUid } from './userTokenManager';
 import { IngredientsObj } from '../globals';
 
 interface PantryProps {
-    change: number;
-    setChange: (arg0: number) => void;
+    change: boolean;
+    setChange: (arg0: boolean) => void;
 };
 
 const Pantry: React.FC<PantryProps> = ({ change, setChange }) => {
     const [pantryList, setPantryList] = useState([]);
-    let count = 0;
 
     useEffect(() => {
         const getPantry = async () => {
@@ -68,8 +67,7 @@ const Pantry: React.FC<PantryProps> = ({ change, setChange }) => {
         } catch (error) {
             console.log(error);
         }
-        count++;
-        setChange(count);
+        setChange(!change);
     };
 
     async function addToIngredients (uid: string, id: string, name: string, time: Date) {
@@ -78,8 +76,7 @@ const Pantry: React.FC<PantryProps> = ({ change, setChange }) => {
         } catch (error) {
             console.log(error)
         };
-        change++
-        setChange(count);
+        setChange(!change);
     };
 
     return <div className='pantry__container'>
