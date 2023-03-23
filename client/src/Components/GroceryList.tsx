@@ -6,10 +6,14 @@ import { CheckBox } from '@mui/icons-material';
 import { getUid } from './userTokenManager';
 import { ListObj } from '../globals';
 
-const GroceryList = () => {
+interface GroceryListProps {
+    toggleList: boolean;
+    setToggleList: (arg: boolean) => void;
+}
+
+const GroceryList: React.FC<GroceryListProps> = ({ toggleList, setToggleList }) => {
     const [groceryList, setGroceryList] = useState([]);
     const [checked, setChecked] = useState([0]);
-    let [toggle, setToggle] = useState(true)
     
     useEffect(() => {        
         async function getGroceryList () {
@@ -98,10 +102,10 @@ const GroceryList = () => {
             } catch (error) {
                 console.log(error);
             };
-            setToggle(!toggle);
+            setToggleList(!toggleList);
         };
         getGroceryList();
-    },[toggle]);
+    },[toggleList]);
 
     const openInNewTab = (url: string) => {
         window.open(url, '_blank', 'noopener,noreferrer');
@@ -116,7 +120,7 @@ const GroceryList = () => {
             <Table>
                 <TableRow>
                     <div className="grocery__lists__container">
-                            { groceryList }
+                        { groceryList }
                     </div>
                 </TableRow>
             </Table>

@@ -25,6 +25,7 @@ const theme = createTheme({
 function App() {
   const [authUser, setAuthUser] = useState<User | null>(null);
   const [search, setSearch] = useState('');
+  const [toggleList, setToggleList] = useState(true);
 
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user: User | null) => {
@@ -50,8 +51,8 @@ function App() {
           <Route path='/login' element={ <SignIn/>}/>
           <Route path='/signup' element={ <SignUp/>}/>
           <Route path='/' element={ <ProtectedRoutes authUser={authUser}> <UserInput/> </ProtectedRoutes> }/>
-          <Route path='/recipes' element={ <ProtectedRoutes authUser={authUser}> <Recipes search={search}/> </ProtectedRoutes> }/>
-          <Route path='/lists' element={ <ProtectedRoutes authUser={authUser}> <GroceryList/> </ProtectedRoutes> }/>
+          <Route path='/recipes' element={ <ProtectedRoutes authUser={authUser}> <Recipes search={search} toggleList={toggleList} setToggleList={setToggleList}/> </ProtectedRoutes> }/>
+          <Route path='/lists' element={ <ProtectedRoutes authUser={authUser}> <GroceryList toggleList={toggleList} setToggleList={setToggleList}/> </ProtectedRoutes> }/>
         </Routes>
       </ThemeProvider>
     </div>

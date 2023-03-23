@@ -9,9 +9,11 @@ import { IngredientsObj, ResponseObj } from '../globals';
 
 interface RecipesProps {
     search: string;
+    toggleList: boolean;
+    setToggleList: (arg: boolean) => void;
 }
 
-const Recipes: React.FC<RecipesProps> = ({ search }) => {
+const Recipes: React.FC<RecipesProps> = ({ search, toggleList, setToggleList }) => {
     const [recipes, setRecipes] = useState([]);
     const [ingredients, setIngredients] = useState([]);
     const navigate = useNavigate();
@@ -90,6 +92,7 @@ const Recipes: React.FC<RecipesProps> = ({ search }) => {
                                     aria-label="add to shopping cart"
                                     onClick={() => {
                                         addToGroceryList(name, calories, image, recipeIngredients, source);
+                                        setToggleList(!toggleList);
                                         navigate('/lists');
                                         }
                                     }>
